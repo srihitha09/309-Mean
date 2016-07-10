@@ -1,3 +1,15 @@
+.left {
+	width: 75%;
+}
+
+.right {
+	width: 20%;
+	/*background-color: yellow;*/
+	position: fixed;
+	top: 10px;
+	right: 10px;
+}
+
 #course_header {
 	
 }
@@ -65,4 +77,11 @@
 	margin: 0px;
 	color: grey;
 	font-size: 11px;
+}
+
+.recommendation_wrapper {
+	/*background-color: orange;*/
+	padding: 5px;
+	margin-top: 20px;
+	border: inset 5px orange;
 }
