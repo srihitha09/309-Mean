@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>User Profile Sidebar - Bootsnipp.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/profile.css" rel="stylesheet">
+    <script src="assets/scripts/jquery-2.2.4.min.js"></script>
+    <script src="assets/scripts/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Messages</a></li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group input-group">
+          <input type="text" class="form-control" placeholder="Search..">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<article class="container">
+    <section class="row profile">
+    <section class="col-md-3">
+      <section class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <section class="profile-userpic">
+          <img src="images/avatar.png" class="img-responsive" alt="">
+        </section>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <section class="profile-usertitle">
+          <p class="profile-usertitle-name">
+            Srihitha 
+          </p>
+          <p class="profile-usertitle-job">
+            University of Toronto
+          </p>
+          <p class="profile-usertitle-program">
+            Computer Science Specialist
+          </p>
+          <p class="rating">
+            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+          </p>
+          <span class="badge-title"> Badge </span>
+        </section>
+        <!-- END SIDEBAR USER TITLE -->
+       
+        <!-- SIDEBAR BUTTONS -->
+        <section class="profile-userbuttons">
+          <button type="button" class="btn btn-success btn-sm">Add Friend</button>
+          <button type="button" class="btn btn-danger btn-sm">Message</button>
+        </section>
+        <!-- END SIDEBAR BUTTONS -->
+        
+        <!-- SIDEBAR MENU -->
+        <nav id="profile-usermenu">
+          <ul class="nav">
+            <li class="active">
+              <a href="#about"> About </a>
+            </li>
+            <li>
+              <a href="#courses"> Courses </a>
+            </li>
+            <li>
+              <a href="#resources"> Resources </a>
+            </li>
+            <li>
+              <a href="#friends"> Friends </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- END MENU -->
+      </section>
+    </section>
+    <article id="content">
+            <section id="about">
+              Some user related content goes here...
+            </section>
+
+            <section id="courses">
+              Some user related content goes here...
+            </section>
+
+            <section id="resources">
+              Some user related content goes here...
+            </section>
+
+            <section id="friends">
+              Some user related content goes here...
+            </section>
+
+    </article>
+  </section>
+</article>
+
+<center>
+<strong>&copy; 2016 Srihitha Maryada</a></strong>
+</center>
+
+<br>
+<br>
+
+<script type="text/javascript">
+$(function(){
+  $('#profile-usermenu ul li a').on('click', function(e){
+    e.preventDefault();
+    var newcontent = $(this).attr('href');
+    
+    $('#profile-usermenu ul li a').removeClass('sel');
+    $(this).addClass('sel');
+    
+    $('#content section').each(function(){
+      if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
+    });
+    
+    $(newcontent).removeClass('hidden');
+  });
+});
+</script>
+</body>
+</html>
