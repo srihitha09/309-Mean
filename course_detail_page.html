@@ -3,6 +3,8 @@
 <head>
 	<title>Course detail</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/course_detail_page.css" defer>
+	<script type="text/javascript" src="assets/scripts/jquery-2.2.4.min.js" defer></script>
+	<script type="text/javascript" src="assets/scripts/course_detail_page.js"></script>
 </head>
 
 <body>
@@ -46,10 +48,10 @@
 
 					<section class="comment_thumb_buttons">
 						<p>Useful? </p>
-						<img src="assets/img/thumbs_up.png">
-						<p class="thumb_count">0</p>
-						<img src="assets/img/thumbs_down.png">
-						<p class="thumb_count">0</p>
+						<img src="assets/img/thumbs_up.png" onclick="thumb_up_clicked(this)">
+						<p class="thumb_count thumb_up_count">0</p>
+						<img src="assets/img/thumbs_down.png" onclick="thumb_down_clicked(this)">
+						<p class="thumb_count thumb_down_count">0</p>
 					</section>
 				</section>
 			</section>
@@ -69,10 +71,10 @@
 
 					<section class="comment_thumb_buttons">
 						<p>Useful? </p>
-						<img src="assets/img/thumbs_up.png">
-						<p class="thumb_count">0</p>
-						<img src="assets/img/thumbs_down.png">
-						<p class="thumb_count">5</p>
+						<img src="assets/img/thumbs_up.png" onclick="thumb_up_clicked(this)">
+						<p class="thumb_count thumb_up_count">0</p>
+						<img src="assets/img/thumbs_down.png" onclick="thumb_down_clicked(this)">
+						<p class="thumb_count thumb_down_count">5</p>
 					</section>
 				</section>
 			</section>
@@ -92,10 +94,10 @@
 
 					<section class="comment_thumb_buttons">
 						<p>Useful? </p>
-						<img src="assets/img/thumbs_up.png">
-						<p class="thumb_count">3</p>
-						<img src="assets/img/thumbs_down.png">
-						<p class="thumb_count">0</p>
+						<img src="assets/img/thumbs_up.png" onclick="thumb_up_clicked(this)">
+						<p class="thumb_count thumb_up_count">3</p>
+						<img src="assets/img/thumbs_down.png" onclick="thumb_down_clicked(this)">
+						<p class="thumb_count thumb_down_count">0</p>
 					</section>
 				</section>
 			</section>
