@@ -95,6 +95,12 @@
 	color: #E45214;
 }
 
+.comment_content_textarea {
+	width: 80%;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 18px;
+}
+
 @media screen and (max-width: 600px) {
 	.left {
 		width: 100%;
