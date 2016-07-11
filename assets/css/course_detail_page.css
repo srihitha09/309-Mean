@@ -95,3 +95,21 @@
 	color: #E45214;
 }
 
+@media screen and (max-width: 600px) {
+	.left {
+		width: 100%;
+	}
+
+	.right {
+		width: 100%;
+		position: static;
+	}
+
+	.prof_name {
+		color: #800079;
+	}
+
+	.recommendation_wrapper {
+		border: inset 3px #007980;
+	}
+}
