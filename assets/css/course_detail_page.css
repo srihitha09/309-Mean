@@ -1,13 +1,14 @@
 .left {
 	width: 75%;
+	margin-top: 30px;
 }
 
 .right {
 	width: 20%;
 	/*background-color: yellow;*/
 	position: fixed;
-	top: 10px;
-	right: 10px;
+	top: 100px;
+	right: 20px;
 }
 
 #course_header {
@@ -20,7 +21,7 @@
 }
 
 #course_history {
-	
+	margin: 30px 0px;
 }
 
 .course_info {
@@ -44,6 +45,7 @@
 
 .comment_detail {
 	flex-basis: 75%;
+	text-align: start; 
 }
 
 .comment_bottom_bar {
@@ -51,8 +53,9 @@
 	align-items: center;
 	justify-content: space-between;
 	width: 100% !important;
-	border-top: 1px dashed;
+	border-top: 1px dashed, black;
 	padding: 5px 0px;
+	color: #DFDFDF;
 }
 
 .comment_bottom_bar > * {
@@ -75,13 +78,20 @@
 
 .thumb_count {
 	margin: 0px;
-	color: grey;
 	font-size: 11px;
 }
 
 .recommendation_wrapper {
-	/*background-color: orange;*/
 	padding: 5px;
 	margin-top: 20px;
-	border: inset 5px orange;
+	border: inset 3px #E6B400;
 }
+
+.recommendation_wrapper a {
+	color: #DFDFDF;
+}
+
+.prof_name {
+	color: #E45214;
+}
+

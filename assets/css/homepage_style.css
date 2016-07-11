@@ -31,13 +31,13 @@ ul {
     background-color: none;
 }
 
-li {
+#nav li {
     float: right;
     font-variant: small-caps;
 
 }
 
-li a {
+#nav li a {
     display: block;
     color: white;
     text-align: center;

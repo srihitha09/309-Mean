@@ -2,18 +2,40 @@
 <html>
 <head>
 	<title>Course detail</title>
+	<link href="assets/css/homepage_style.css" type="text/css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="assets/css/course_detail_page.css" defer>
+
 	<script type="text/javascript" src="assets/scripts/jquery-2.2.4.min.js" defer></script>
 	<script type="text/javascript" src="assets/scripts/course_detail_page.js"></script>
 </head>
 
 <body>
+	<!-- Navigation -->
+	<div id="nav">
+		<ul>
+		  <li><a href="#login">Login</a></li>
+		  <li><a href="#resources">Resources</a></li>
+		  <li><a href="#programs">Programs</a></li>
+		  <li><a href="#courses">Courses</a></li>
+		  <li><a href="#about">About</a></li>
+		  <li>
+		  	<form method="get" action="/search" id="search-general">
+		  		<input name="q" type="search" size="40" placeholder="Search..." />
+			</form>
+		  </li>
+		</ul>
+	</div>
+
 	<!-- Left panel -->
 	<section class="left">
 		<!-- Header -->
 		<header id="course_header">
 			<h1 id="course_name">Course: CSC309</h1>
-			<h3 class="course_info">Current: 2016 Summer by Katie Seaborn</h3>
+			<h3 class="course_info">
+				Current: 2016 Summer by 
+				<span class="prof_name">Katie Seaborn</span>
+			</h3>
 			<h3 class="course_info">Current rating: 4.5/5.0</h3>
 			<h4 class="course_info">Overall rating: 3.9/5.0</h4>
 		</header>
@@ -114,7 +136,7 @@
 		</section>
 
 		<section class="recommendation_wrapper">
-			<p>Professor Katie Seaborn also taught:</p>
+			<p>Professor <span class="prof_name">Katie Seaborn</span> also taught:</p>
 			<p><a href="">CSC148</a></p>
 		</section>
 	</section>
