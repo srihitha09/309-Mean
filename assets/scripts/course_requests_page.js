@@ -32,9 +32,11 @@ function generatePosts(keyword) {
 			href: ''
 		}));
 		$userInfo.append($name_wrap);
-		$userInfo.append($('<button/>', {
+		var $contactButton = $('<button/>', {
 			text: 'Contact'
-		}));
+		});
+		$contactButton.on('click', openMessagingBox);
+		$userInfo.append($contactButton);
 		$post.append($userInfo);
 
 		var $detail = $('<section>', {
@@ -47,4 +49,46 @@ function generatePosts(keyword) {
 
 		$('#posts').append($post);
 	}
+}
+
+function openMessagingBox() {
+	var $parent = $(this).parent().parent();
+	console.log($(this));
+
+	// textarea object
+	$parent.append($('<textarea/>', {
+		class: 'post_message_textarea expand',
+		rows: '6',
+		name: 'message_content',
+		form: 'message_form',
+		placeholder: 'Please enter your comment'
+	}));
+
+	// form object with a checkbox and a submit button
+	var $formObj = $('<form/>', {
+		id: 'message_form',
+		class: 'expand',
+		style: 'width: 90%; text-align: end;'
+	});
+
+	var $cancelButton = $('<a/>', {
+		text: 'Cancel',
+		href: 'javascript:void 0;'
+	});
+	var $commentButton = $(this);
+	$cancelButton.on('click', function(){
+		$('.expand').hide();
+		$commentButton.show();
+	})
+	$formObj.append($cancelButton);
+
+	$formObj.append($('<input/>', {
+		type: 'submit',
+		value: 'Send'
+	}));
+
+	$parent.append($formObj);
+
+	// hide the comment button
+	$(this).hide();
 }

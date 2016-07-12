@@ -67,6 +67,13 @@
 	text-align: start; 
 }
 
+.post_message_textarea {
+	width: 90%;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 18px;
+	margin-left: 20px;
+}
+
 @media screen and (max-width: 600px) {
 	.left {
 		width: 100%;
