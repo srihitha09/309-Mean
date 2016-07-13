@@ -8,9 +8,7 @@ $(document).on('click', '#courses-btn', function(){
 			'<h3>at</h3>' + 
 			'<form method="get" action="/search" id="search"><input name="q" type="search" size="40" placeholder="university name" /></form>' +
 			'<button id="go">GO</button>' + '<br>' +
-			'<button id="cancel">Cancel</button>')
-
-
+			'<button id="cancel">Cancel</button>');
 
 });
 
@@ -24,11 +22,13 @@ $(document).on('click', '#programs-btn', function(){
 			'<button id="go">GO</button>' + '<br>' +
 			'<button id="cancel">Cancel</button>')
 
-
-
 });
 
 $(document).on('click', '#cancel', function(){ 
 		$("#search-section").replaceWith(divClone);
 		divClone = $("#search-section").clone();
  });
+
+$(document).on('click', '#go', function(){
+	location.href = 'course_requests_page.html';
+});
