@@ -4,19 +4,25 @@ A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themefores
 Licensed under MIT
 ***/
 
-body {
-  background: #F1F3FA;
-}
 
 /* Profile container */
 .profile {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 /* Profile sidebar */
 .profile-sidebar {
   padding: 20px 0 10px 0;
-  background: #fff;
+  background: #E8ECED;
+}
+
+/* Profile sidebar */
+#content {
+  padding: 20px 10px 10px 10px;
+  margin-left: 350px;
+  margin-right: 300px;
+  background: #E8ECED;
+  width: 70%;
 }
 
 .profile-userpic img {
@@ -151,3 +157,116 @@ body {
    left: 0; 
    color: gold;
 }
+
+/* Basic Layout*/
+body{
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+
+  /**********BACKGROUND STYLE*************/
+  background:
+
+
+    -webkit-linear-gradient(45deg, hsla(335, 93%, 48%, 1) 0%, hsla(335, 93%, 48%, 0) 70%),
+    -webkit-linear-gradient(315deg, hsla(199, 91%, 50%, 1) 10%, hsla(199, 91%, 50%, 0) 80%),
+    -webkit-linear-gradient(225deg, hsla(252, 91%, 42%, 1) 10%, hsla(252, 91%, 42%, 0) 80%),
+    -webkit-linear-gradient(135deg, hsla(93, 99%, 45%, 1) 100%, hsla(93, 99%, 45%, 0) 70%),
+    linear-gradient(45deg, hsla(335, 93%, 48%, 1) 0%, hsla(335, 93%, 48%, 0) 70%),
+    linear-gradient(135deg, hsla(199, 91%, 50%, 1) 10%, hsla(199, 91%, 50%, 0) 80%),
+    linear-gradient(225deg, hsla(252, 91%, 42%, 1) 10%, hsla(252, 91%, 42%, 0) 80%),
+    linear-gradient(315deg, hsla(93, 99%, 45%, 1) 100%, hsla(93, 99%, 45%, 0) 70%);
+  
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /*******END BACKGROUND STYLE*********/
+}
+
+/****NAVIGATION BAR STYLE****/
+#nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: none;
+}
+
+#nav li {
+    float: right;
+    font-variant: small-caps;
+
+}
+
+#nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: rgba(255, 155, 255, 1);
+}
+/*******END NAV BAR STYLE************************/
+input{
+  margin: 7px;
+  padding: 5px;
+}
+
+/*****BUTTON STYLE******/
+
+/******END BUTTON STYLE******/
+
+button:hover {
+  color: rgba(255, 155, 255, 1);
+  box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}
+
+#search input[type="search"] {
+    background: white;
+    height: 50px;
+    border: 1px solid #d1d1d1;
+     font-family: 'Quicksand', sans-serif;
+     font-size: 2em;
+     text-align: center;
+    color: #bebebe;
+    width: 350px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+   
+    }
+
+#search-general input[type="search"] {
+    background: white;
+    border: 1px solid #d1d1d1;
+     font-family: 'Quicksand', sans-serif;
+    color: #bebebe;
+    width: 250px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    }
+
+#search-general input[type="search"]:focus {
+    width: 400px;
+    }
+
+
+
+
+

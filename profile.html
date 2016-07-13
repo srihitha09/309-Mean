@@ -3,45 +3,26 @@
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>User Profile Sidebar - Bootsnipp.com</title>
+    <title>CourseTutor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/profile.css" rel="stylesheet">
     <script src="assets/scripts/jquery-2.2.4.min.js"></script>
-    <script src="assets/scripts/bootstrap.min.js"></script>
+    <script src="assets/scripts/bootstrap.min.css"></script>
 </head>
 <body>
 
-  <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Messages</a></li>
-      </ul>
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group input-group">
-          <input type="text" class="form-control" placeholder="Search..">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-        </div>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
-      </ul>
-    </div>
-  </div>
+  <nav id="nav">
+<ul>
+  <li><a href="#login">Login</a></li>
+  <li><a href="#resources">Resources</a></li>
+  <li><a href="#programs">Programs</a></li>
+  <li><a href="#courses">Courses</a></li>
+  <li><a href="#about">About</a></li>
+  <li><form method="get" action="/search" id="search-general">
+  <input name="q" type="search" size="40" placeholder="Search..." />
+</form></li>
+</ul>
 </nav>
 
 <article class="container">
@@ -67,7 +48,7 @@
           <p class="rating">
             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
           </p>
-          <span class="badge-title"> Badge </span>
+          <span class="badge-title"> Tutor </span>
         </section>
         <!-- END SIDEBAR USER TITLE -->
        
@@ -82,13 +63,13 @@
         <nav id="profile-usermenu">
           <ul class="nav">
             <li class="active">
-              <a href="#about"> About </a>
+              <a href="#about" class"sel"> About </a>
             </li>
             <li>
               <a href="#courses"> Courses </a>
             </li>
             <li>
-              <a href="#resources"> Resources </a>
+              <a href="#resources"> Sessions </a>
             </li>
             <li>
               <a href="#friends"> Friends </a>
@@ -98,34 +79,34 @@
         <!-- END MENU -->
       </section>
     </section>
-    <article id="content">
+    <article class="profile-content" id="content">
             <section id="about">
-              Some user related content goes here...
+              <p>My name is Sri. I am a 4th year Computer Science student.</p>
+              <p>I like teaching and love tutoring Computer Science courses. I have a very busy schedule so please
+                book sessions in advance</p>  
             </section>
 
-            <section id="courses">
-              Some user related content goes here...
+            <section id="courses" class="hidden">
+              <ul class="course-list">
+                <li><a href="#">CSCA08</a></li>
+                <li><a href="#">CSCB09</a></li>
+                <li><a href="#">CSCC43</a></li>
+                <li><a href="#">CSCD58</a></li>
+                <li><a href="#">LINA01</a></li>
+              </ul>
+              </section>
+
+            <section id="sessions" class="hidden">
+              
             </section>
 
-            <section id="resources">
-              Some user related content goes here...
-            </section>
-
-            <section id="friends">
+            <section id="friends" class="hidden">
               Some user related content goes here...
             </section>
 
     </article>
   </section>
 </article>
-
-<center>
-<strong>&copy; 2016 Srihitha Maryada</a></strong>
-</center>
-
-<br>
-<br>
-
 <script type="text/javascript">
 $(function(){
   $('#profile-usermenu ul li a').on('click', function(e){
@@ -142,6 +123,5 @@ $(function(){
     $(newcontent).removeClass('hidden');
   });
 });
-</script>
 </body>
 </html>
