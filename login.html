@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <header class="hero-unit" id="banner">
-    <div class="head">
-      <h1>Login</h1>
-      <link href="./assets/css/jason_style.css" type="text/css" rel="stylesheet">
-    </div>
-  </header>
+  <head>
+      <meta charset="UTF-8">
+      <title>Login</title>
+      
+      <!-- CSS -->
+      <link href="assets/css/homepage_style.css" type="text/css" rel="stylesheet">
+      
+      <script type="text/javascript" src="assets/scripts/jquery-2.2.4.min.js" defer></script><!-- jQuery should be first -->
+      
+      <script type="text/javascript" src="assets/scripts/script.js" async></script>
 
-  <ul class="navbar">
-    <li class="navlist"><a href="./course_detail_page.html">Home</a></li>
-    <li class="navlist"><a>My Profile</a></li>
-    <li class="navlist"><a>Courses</a></li>
-    <li class="navlist"><a href="./resources.html">My Resources</a></li>
-    <li class="navlist"><a href="./login.html">Login</a></li>
-    <li class="navlist"><a href="./signup.html">Sign up</a></li>
+      <!-- Fonts -->
+      <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body>
+  <div id="nav">
+  <ul>
+    <li><a href="./login.html">Login</a></li>
+    <li><a href="./resources.html">Resources</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#about">About</a></li>
+    <li><form method="get" action="/search" id="search-general">
+    <input name="q" type="search" size="40" placeholder="Search..." />
+  </form></li>
   </ul>
+  </div>
+
+  <h1 id="title">Login</h1>
   
   <div class="container">
 
@@ -46,15 +62,19 @@
 
     <div>
       <button class="button">Login</button>
-      <a href="./signup.html" class="button">Sign up</a>
+      <button class="button"><a href="./signup.html" class="button">Sign up</a></button>
     </div>
 
 
   </div>
 
-  <footer>
-    <div class="foot">
-      <h4>Credits... Etc... footer placeholder</h4>
-    </div>
+  </body>
+
+
+  <footer id="footer">
+      <p>
+      <small>&copy; 2016</small>
+      </p>
   </footer>
+
 </html>

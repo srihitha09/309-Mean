@@ -142,3 +142,27 @@ button:hover {
 }
 
 
+/*** RESOURCE PAGE ***/
+
+.resource {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}
+
+.description {
+    padding: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode';
+    text-align: center;
+}
+
+.resource:hover {
+    border: 1px solid #777;
+}
+
+.resource img {
+    width: 100%;
+    height: auto;
+}
+
