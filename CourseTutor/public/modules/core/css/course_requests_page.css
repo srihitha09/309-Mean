@@ -1,0 +1,94 @@
+.left {
+	width: 75%;
+	margin-top: 30px;
+}
+
+.right {
+	width: 20%;
+	/*background-color: yellow;*/
+	position: fixed;
+	top: 100px;
+	right: 20px;
+}
+
+#course_name {
+	font-size: 48px;
+	margin: auto;
+}
+
+.recommendation_wrapper {
+	padding: 5px;
+	margin-top: 20px;
+	border: inset 3px #E6B400;
+}
+
+.recommendation_wrapper a {
+	color: #DFDFDF;
+}
+
+.highlight {
+	color: #E45214;
+}
+
+.single_post {
+	border: 1px solid;
+	display: inline-flex;
+	align-items: center;
+	align-content: center;
+	flex-wrap: wrap;
+	width: 100% !important;
+}
+
+.post_userInfo {
+	flex-basis: 20%;
+	text-align: center;
+	min-width: 80px;
+}
+
+.post_userInfo button {
+	width: initial;
+	font-size: 14px;
+	padding: 5px;
+	margin: 5px;
+	border-color: #DFDFDF;
+}
+
+.post_userInfo a {
+	color: black;
+	text-decoration: initial;
+}
+
+.post_userInfo a:hover {
+	color: #E45214;
+}
+
+.post_detail {
+	flex-basis: 75%;
+	text-align: start; 
+}
+
+.post_message_textarea {
+	width: 90%;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 18px;
+	margin-left: 20px;
+}
+
+@media screen and (max-width: 600px) {
+	.left {
+		width: 100%;
+	}
+
+	.right {
+		width: 100%;
+		position: static;
+	}
+
+	.prof_name {
+		color: #800079;
+	}
+
+	.recommendation_wrapper {
+		border: inset 3px #007980;
+	}
+}
