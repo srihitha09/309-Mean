@@ -164,6 +164,8 @@ body{
   text-align: center;
 
   /**********BACKGROUND STYLE*************/
+
+  /* CHROME */
   background:
 
 
@@ -175,7 +177,32 @@ body{
     linear-gradient(135deg, hsla(199, 91%, 50%, 1) 10%, hsla(199, 91%, 50%, 0) 80%),
     linear-gradient(225deg, hsla(252, 91%, 42%, 1) 10%, hsla(252, 91%, 42%, 0) 80%),
     linear-gradient(315deg, hsla(93, 99%, 45%, 1) 100%, hsla(93, 99%, 45%, 0) 70%);
-  
+
+  /* FIREFOX */
+  background:
+
+
+    -moz-linear-gradient(45deg, hsla(335, 93%, 48%, 1) 0%, hsla(335, 93%, 48%, 0) 70%),
+    -moz-linear-gradient(315deg, hsla(199, 91%, 50%, 1) 10%, hsla(199, 91%, 50%, 0) 80%),
+    -moz-linear-gradient(225deg, hsla(252, 91%, 42%, 1) 10%, hsla(252, 91%, 42%, 0) 80%),
+    -moz-linear-gradient(135deg, hsla(93, 99%, 45%, 1) 100%, hsla(93, 99%, 45%, 0) 70%),
+    linear-gradient(45deg, hsla(335, 93%, 48%, 1) 0%, hsla(335, 93%, 48%, 0) 70%),
+    linear-gradient(135deg, hsla(199, 91%, 50%, 1) 10%, hsla(199, 91%, 50%, 0) 80%),
+    linear-gradient(225deg, hsla(252, 91%, 42%, 1) 10%, hsla(252, 91%, 42%, 0) 80%),
+    linear-gradient(315deg, hsla(93, 99%, 45%, 1) 100%, hsla(93, 99%, 45%, 0) 70%);
+
+  /* OPERA */
+  background:
+
+
+    -o-linear-gradient(45deg, hsla(335, 93%, 48%, 1) 0%, hsla(335, 93%, 48%, 0) 70%),
+    -o-linear-gradient(315deg, hsla(199, 91%, 50%, 1) 10%, hsla(199, 91%, 50%, 0) 80%),
+    -o-linear-gradient(225deg, hsla(252, 91%, 42%, 1) 10%, hsla(252, 91%, 42%, 0) 80%),
+    -o-linear-gradient(135deg, hsla(93, 99%, 45%, 1) 100%, hsla(93, 99%, 45%, 0) 70%),
+    linear-gradient(45deg, hsla(335, 93%, 48%, 1) 0%, hsla(335, 93%, 48%, 0) 70%),
+    linear-gradient(135deg, hsla(199, 91%, 50%, 1) 10%, hsla(199, 91%, 50%, 0) 80%),
+    linear-gradient(225deg, hsla(252, 91%, 42%, 1) 10%, hsla(252, 91%, 42%, 0) 80%),
+    linear-gradient(315deg, hsla(93, 99%, 45%, 1) 100%, hsla(93, 99%, 45%, 0) 70%);
 
   background-repeat: no-repeat;
   background-attachment: fixed;
