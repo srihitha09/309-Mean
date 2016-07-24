@@ -1,0 +1,22 @@
+<section data-ng-controller="CommentsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Comments</h1>
+    </div>
+    <!-- this is the new search input field -->
+    <div class="form-group">
+        <input type="text" ng-model="search" typeahead="comment as comment.author for comment in comments | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="commentSearch($item)" placeholder="Search Comment...">
+    </div>
+    <!-- end -->
+    <div class="list-group">
+        <a data-ng-repeat="comment in comments | limitTo: offset - comments.length | limitTo: pageSize" data-ng-href="#!/comments/{{comment._id}}" class="list-group-item">
+            <h4 class="list-group-item-heading" data-ng-bind="authentication.user.displayName"></h4>
+            <span data-ng-bind="comment.body"></span>
+        </a>
+    </div>
+    <!-- this is the paging control -->
+    <pagination total-items="comments.length" ng-model="currentPage" ng-change="pageChanged()" max-size="pageSize" ng-show="comments.length > pageSize"></pagination>
+    <!-- end -->
+    <div class="alert alert-warning text-center" data-ng-hide="!comments.$resolved || comments.length">
+        No comments yet, why don't you <a href="/#!/comments/create">create one</a>?
+    </div>
+</section>

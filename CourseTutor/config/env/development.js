@@ -6,9 +6,9 @@ module.exports = {
 		title: 'CourseTutor - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
-		callbackURL: '/auth/facebook/callback'
+		clientID: process.env.FACEBOOK_ID || '312796959052913',
+		clientSecret: process.env.FACEBOOK_SECRET || '0a9ba4f8a8f1804fe99c992a57e41b96',
+		callbackURL: 'http://localhost:3000/auth/facebook/callback'
 	},
 	twitter: {
 		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
