@@ -52,3 +52,22 @@ exports.hasAuthorization = function(roles) {
 		});
 	};
 };
+
+/**
+ * User authorizations routing middleware
+ */
+exports.isAdmin = function() {
+	var _this = this;
+
+	return function(req, res, next) {
+		_this.requiresLogin(req, res, function() {
+			if (req.user.username === 'sri') {
+				return next();
+			} else {
+				return res.status(403).send({
+					message: 'User is not authorized'
+				});
+			}
+		});
+	};
+};
