@@ -204,3 +204,22 @@ exports.removeOAuthProvider = function(req, res, next) {
 		});
 	}
 };
+
+/*exports.createAdmin = function(req, res, next) {
+	
+	User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
+		user = new User({
+			firstName: 'Srihitha',
+			lastName: 'Maryada',
+			username: 'admin',
+			displayName: 'admin',
+			password: ''
+		});
+
+		// And save the user
+		user.save(function(err) {
+			return done(err, user);
+		});
+	});
+			
+}*/

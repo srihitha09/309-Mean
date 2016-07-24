@@ -2,15 +2,16 @@
 
 module.exports = function(app) {
 	var courses = require('../../app/controllers/courses.server.controller');
+	var users = require('../../app/controllers/users/users.authorization.server.controller');
 	
 	app.route('/courses')
 		.get(courses.list)
-		.post(courses.create);
+		.post(users.requiresLogin, courses.create);
 
 	app.route('/courses/:courseId')
 		.get(courses.read)
-		.put(courses.update)
-		.delete(courses.delete);
+		.put(users.requiresLogin, courses.update)
+		.delete(users.requiresLogin, courses.delete);
 
 	// Finish by binding the article middleware
 	// What's this? Where the coursId is present in the URL
