@@ -1,7 +1,10 @@
 <section data-ng-controller="CoursesController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="course.name"></h1>
-		<p data-ng-bind="course.description"></p>
+		<h2 data-ng-bind="course.description"></h2>
+		<h4 data-ng-bind="course.program"></h4>
+		<h4 data-ng-bind="course.school"></h4>
+		<h4 data-ng-bind="course.year"></h4>
 	</div>
 	<div class="pull-right">
 		<a class="btn btn-primary" href="/#!/courses/{{course._id}}/edit">
@@ -21,7 +24,7 @@
     </div>
     <!-- this is the new search input field -->
     <div class="form-group">
-        <input type="text" ng-model="search" typeahead="comment as comment.author for comment in comments | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="commentSearch($item)" placeholder="Search Comment...">
+        <input type="text" ng-model="search" typeahead="comment as comment.body for comment in comments | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="commentSearch($item)" placeholder="Search Comment..." width="500">
     </div>
     <!-- end -->
     <div class="list-group">
@@ -33,9 +36,7 @@
     <!-- this is the paging control -->
     <pagination total-items="comments.length" ng-model="currentPage" ng-change="pageChanged()" max-size="pageSize" ng-show="comments.length > pageSize"></pagination>
     <!-- end -->
-    <div class="alert alert-warning text-center" data-ng-hide="!comments.$resolved || comments.length">
-        No comments yet, why don't you <a href="/#!/comments/create">create one</a>?
-    </div>
+    
 </section>
 
 
@@ -52,7 +53,7 @@
                 <div class="form-group">
                     <label class="control-label" for="name">Comment</label>
                     <div class="controls">
-                        <textarea name="body" data-ng-model="body" id="body" class="form-control" cols="10" rows="5" placeholder="Enter your comment here"></textarea>
+                        <textarea name="body" data-ng-model="body" id="body" class="form-control" cols="10" rows="5" placeholder="Enter your comment here" required></textarea>
                     </div>
                 </div>
                  <div class="form-group">

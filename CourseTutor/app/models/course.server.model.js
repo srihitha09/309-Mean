@@ -40,7 +40,7 @@ var CourseSchema = new Schema({
 	},
 	year: {
 		type: Number,
-		default: 0
+		default: 2016
 	}
 });
 
