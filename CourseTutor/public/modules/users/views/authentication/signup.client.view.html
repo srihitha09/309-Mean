@@ -42,6 +42,29 @@
 					<label for="password">Password</label>
 					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
 				</div>
+				<div class="form-group">
+					<label for="school">School</label>
+					<input type="text" id="school" name="school" class="form-control" data-ng-model="user.school" placeholder="School">
+				</div>
+				<div class="form-group">
+					<label for="program">Program</label>
+					<input type="text" id="program" name="program" class="form-control" data-ng-model="user.program" placeholder="Program">
+				</div>
+				<!--<div class="form-group">
+					<label for="program">Role</label>
+					<input type="text" id="program" name="program" class="form-control" data-ng-model="user.roles" placeholder="Tutor or Student">
+				</div>!-->
+				<div class="form-group">
+					<label>Tutor: <input type="checkbox" ng-model="checkboxModel.tutor" data-bg-model="user.roles">
+  					</label><br/>
+  					<label>Student: <input type="checkbox" ng-model="checkboxModel.student" ng-true-value="'YES'" 
+  						ng-false-value="'NO'">
+   					</label><br/>
+				</div>
+
+				<!--<tt>value1 = {{checkboxModel.value1}}</tt><br/>
+  <tt>value2 = {{checkboxModel.value2}}</tt><br/>!-->
+				
 				<div class="text-center form-group">
 					<button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;
 					<a href="/#!/signin" class="show-signup">Sign in</a>
