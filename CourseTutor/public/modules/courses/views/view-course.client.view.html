@@ -6,7 +6,7 @@
 		<h4 data-ng-bind="course.school"></h4>
 		<h4 data-ng-bind="course.year"></h4>
 	</div>
-	<div class="pull-right">
+	<div class="pull-right" data-ng-if="authentication.user.roles == 'admin'">
 		<a class="btn btn-primary" href="/#!/courses/{{course._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>

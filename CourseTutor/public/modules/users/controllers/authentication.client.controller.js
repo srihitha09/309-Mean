@@ -19,6 +19,12 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 			});
 		};
 
+		$scope.stateChanged = function(checkbox){
+			 if($scope.authentication.user.checkbox === true){ //If it is checked
+       			alert('test');
+   			}
+		};
+
 		$scope.signin = function() {
 			$http.post('/auth/signin', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model

@@ -15,11 +15,22 @@ var validateLocalStrategyProperty = function(property) {
 };
 
 /**
+ * A Validation function for local strategy properties
+ */
+var validateLocalStrategySchool = function(property) {
+	return ((this.provider === 'local' && !this.updated) || property.length);
+};
+
+/**
  * A Validation function for local strategy password
  */
 var validateLocalStrategyPassword = function(password) {
 	return (this.provider !== 'local' || (password && password.length > 6));
 };
+
+
+
+
 
 /**
  * User Schema
@@ -71,7 +82,7 @@ var UserSchema = new Schema({
 	roles: {
 		type: [{
 			type: String,
-			enum: ['user', 'admin']
+			enum: ['user', 'admin', 'tutor', 'student']
 		}],
 		default: ['user']
 	},
@@ -88,6 +99,33 @@ var UserSchema = new Schema({
 	},
 	resetPasswordExpires: {
 		type: Date
+	},
+	school: {
+		type: String,
+		trim: true,
+		default: '',
+		//validate: [validateLocalStrategyProperty, 'Please fill in your school']
+	},
+	program: {
+		type: String,
+		trim: true,
+		default: '',
+		//validate: [validateLocalStrategyProperty, 'Please fill in your program']
+	},
+	aboutMe: {
+		type: String,
+		//trim: true,
+		default: ''
+	},
+	courses: {
+		type: Array,
+		trim: true,
+		default: []
+	},
+	friends: {
+		type: Array,
+		//trim: true,
+		default: []
 	}
 });
 
