@@ -22,7 +22,7 @@
 </ul>
 </nav>
 
-<article class="container">
+<article class="container" data-ng-controller="SettingsController">
     <section class="row profile">
     <section class="col-md-3">
       <section class="profile-sidebar">
@@ -33,19 +33,13 @@
         <!-- END SIDEBAR USERPIC -->
         <!-- SIDEBAR USER TITLE -->
         <section class="profile-usertitle">
-          <p class="profile-usertitle-name">
-            Srihitha 
-          </p>
-          <p class="profile-usertitle-job">
-            University of Toronto
-          </p>
-          <p class="profile-usertitle-program">
-            Computer Science Specialist
-          </p>
+          <p class="profile-usertitle-name" data-ng-bind="user.firstName"> </p>
+          <p class="profile-usertitle-job" data-ng-bind="user.school"> </p>
+          <p class="profile-usertitle-program" data-ng-bind="user.program"> </p>
           <p class="rating">
             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
           </p>
-          <span class="badge-title"> Tutor </span>
+          <span class="badge-title" data-ng-bind="user.role"> </span>
         </section>
         <!-- END SIDEBAR USER TITLE -->
        
@@ -60,55 +54,37 @@
         <nav id="profile-usermenu">
           <ul class="nav">
             <li class="active">
-              <a href="#about" class"sel"> About </a>
+              <a href="#about"> About </a>
             </li>
             <li>
-              <a href="#courses"> Courses </a>
+              <a href="#!/settings/profileCourses"> Courses </a>
             </li>
             <li>
               <a href="#resources"> Sessions </a>
             </li>
             <li>
-              <a href="#friends"> Friends </a>
+              <a href="#!/settings/profileFriends"> Friends </a>
             </li>
           </ul>
         </nav>
         <!-- END MENU -->
       </section>
     </section>
-    <article class="profile-content" id="content">
+    <article class="profile-content" id="content" >
             <section id="about">
-              <p>My name is Sri. I am a 4th year Computer Science student.</p>
-              <p>I like teaching and love tutoring Computer Science courses. I have a very busy schedule so please
-                book sessions in advance</p>  
+              <p data-ng-bind="user.aboutMe"></p>
             </section>
-
-            <section id="courses" class="hidden">
-              <ul class="course-list">
-                <li><a href="#">CSCA08</a></li>
-                <li><a href="#">CSCB09</a></li>
-                <li><a href="#">CSCC43</a></li>
-                <li><a href="#">CSCD58</a></li>
-                <li><a href="#">LINA01</a></li>
-              </ul>
-              </section>
-
-            <section id="sessions" class="hidden">
-              
-            </section>
-
-            <section id="friends" class="hidden">
-              Some user related content goes here...
-            </section>
-
     </article>
   </section>
 </article>
+
 <script type="text/javascript">
-$(function(){
+
+/*$(function(){
   $('#profile-usermenu ul li a').on('click', function(e){
     e.preventDefault();
     var newcontent = $(this).attr('href');
+    console.log(newcontent);
     
     $('#profile-usermenu ul li a').removeClass('sel');
     $(this).addClass('sel');
@@ -119,4 +95,4 @@ $(function(){
     
     $(newcontent).removeClass('hidden');
   });
-});
+});*/
