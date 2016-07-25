@@ -3,7 +3,7 @@
 		<h1 data-ng-bind="course.name"></h1>
 		<p data-ng-bind="course.description"></p>
 	</div>
-	<div class="pull-right">
+	<div class="pull-right" data-ng-if="authentication.user.roles == 'admin'">
 		<a class="btn btn-primary" href="/#!/courses/{{course._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
