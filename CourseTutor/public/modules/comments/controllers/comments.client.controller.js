@@ -21,10 +21,9 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
 				body: this.body,
 				course: $scope.course._id
 			});
-			//alert($scope.course._id);
-			// Redirect after save
+
+			// Redirect after save by reload
 			comment.$save(function(response) {
-				//$location.path('comments/' + response._id);
 				$window.location.reload();
 				// Clear form fields
 				$scope.author = '';
