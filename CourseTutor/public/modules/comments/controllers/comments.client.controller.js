@@ -1,8 +1,8 @@
 'use strict';
 
 // Comments controller
-angular.module('comments').controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments',
-	function($scope, $stateParams, $location, Authentication, Comments) {
+angular.module('comments').controller('CommentsController', ['$scope', '$stateParams', '$location', '$window', 'Authentication', 'Comments',
+	function($scope, $stateParams, $location, $window, Authentication, Comments) {
 		$scope.authentication = Authentication;
 	  	$scope.currentPage = 1;
 	  	$scope.pageSize = 10;
@@ -17,14 +17,14 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
 		$scope.create = function() {
 			// Create new Comment object
 			var comment = new Comments ({
-				author: this.author,
-				body: this.body
+				author: $scope.authentication.user.username,
+				body: this.body,
+				course: $scope.course._id
 			});
 
-			// Redirect after save
+			// Redirect after save by reload
 			comment.$save(function(response) {
-				$location.path('comments/' + response._id);
-
+				$window.location.reload();
 				// Clear form fields
 				$scope.author = '';
 			}, function(errorResponse) {
@@ -75,6 +75,36 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
 		// Search for a comment
 		$scope.commentSearch = function(product) {
 			$location.path('comments/' + product._id);
+		};
+
+		$scope.upvote = function(comment){
+			// Check if guy already downvoted, need to reupdate the voters list
+			var index = comment.downvoters.indexOf($scope.authentication.user.username);
+			if (index !== -1){
+				comment.downvoters.splice(index, 1);
+			}
+			comment.upvotes++;
+			comment.upvoters.push($scope.authentication.user.username);
+			comment.$update(function() {
+				$location.path('comments/' + comment._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		$scope.downvote = function(comment){
+			// Check if guy already upvoted, need to reupdate the voters list
+			var index = comment.upvoters.indexOf($scope.authentication.user.username);
+			if (index !== -1){
+				comment.upvoters.splice(index, 1);
+			}
+			comment.upvotes--;
+			comment.downvoters.push($scope.authentication.user.username);
+			comment.$update(function() {
+				$location.path('comments/' + comment._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
 		};
 	}
 ]);

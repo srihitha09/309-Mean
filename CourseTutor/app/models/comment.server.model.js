@@ -13,7 +13,9 @@ var CommentSchema = new Schema({
   body: String,
   author: String,
   upvotes: {type: Number, default: 0},
-  course: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' }
+  course: String,
+  upvoters: {type: Array, default: []},
+  downvoters: {type: Array, default: []}
 });
 
 CommentSchema.methods.upvote = function(cb) {

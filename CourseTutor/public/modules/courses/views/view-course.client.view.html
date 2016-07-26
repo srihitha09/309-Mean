@@ -6,7 +6,7 @@
 		<h4 data-ng-bind="course.school"></h4>
 		<h4 data-ng-bind="course.year"></h4>
 	</div>
-	<div class="pull-right" data-ng-if="authentication.user.roles == 'admin'">
+	<div class="pull-right" data-ng-if="authentication.user.roles.indexOf('admin') != -1">
 		<a class="btn btn-primary" href="/#!/courses/{{course._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
@@ -24,12 +24,13 @@
     </div>
     <!-- this is the new search input field -->
     <div class="form-group">
-        <input type="text" ng-model="search" typeahead="comment as comment.body for comment in comments | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="commentSearch($item)" placeholder="Search Comment..." width="500">
+        <input type="text" ng-model="search" typeahead="comment as comment.body for comment in comments | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="commentSearch($item)" placeholder="Search Comment..." width="500" >
     </div>
     <!-- end -->
     <div class="list-group">
-        <a data-ng-repeat="comment in comments | limitTo: offset - comments.length | limitTo: pageSize" class="list-group-item">
-            <b class="list-group-item-heading" data-ng-bind="authentication.user.displayName"></b>
+        <a data-ng-repeat="comment in comments | limitTo: offset - comments.length | limitTo: pageSize" class="list-group-item" data-ng-if="course._id == comment.course">
+            <span><i class="glyphicon glyphicon-arrow-up"></i> {{comment.upvotes}}</span>
+            <b class="list-group-item-heading" data-ng-bind="comment.author"></b>
             <span data-ng-bind="comment.body"></span>
         </a>
     </div>
