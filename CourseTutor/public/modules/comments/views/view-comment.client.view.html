@@ -1,10 +1,8 @@
 <section data-ng-controller="CommentsController" data-ng-init="findOne()">
 	<div class="page-header">
-		<p>Comment by user: </p>
-		<h1 data-ng-bind="comment.author"></h1>
-		<p data-ng-bind="comment.body"></p>
-		<p>Upvotes: </p>
-		<p data-ng-bind="comment.upvotes"></p>
+		<h1>Comment by {{comment.author}} </h1>
+		<h2 data-ng-bind="comment.body"></h2>
+		<span><i class="glyphicon glyphicon-arrow-up"></i> {{comment.upvotes}}</span>
 	</div>
 	<div class="pull-right">
 

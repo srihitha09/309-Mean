@@ -29,6 +29,7 @@
     <!-- end -->
     <div class="list-group">
         <a data-ng-repeat="comment in comments | limitTo: offset - comments.length | limitTo: pageSize" class="list-group-item" data-ng-if="course._id == comment.course">
+            <span><i class="glyphicon glyphicon-arrow-up"></i> {{comment.upvotes}}</span>
             <b class="list-group-item-heading" data-ng-bind="comment.author"></b>
             <span data-ng-bind="comment.body"></span>
         </a>
