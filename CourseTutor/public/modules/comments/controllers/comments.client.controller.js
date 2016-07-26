@@ -1,8 +1,8 @@
 'use strict';
 
 // Comments controller
-angular.module('comments').controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments',
-	function($scope, $stateParams, $location, Authentication, Comments) {
+angular.module('comments').controller('CommentsController', ['$scope', '$stateParams', '$location', '$window', 'Authentication', 'Comments',
+	function($scope, $stateParams, $location, $window, Authentication, Comments) {
 		$scope.authentication = Authentication;
 	  	$scope.currentPage = 1;
 	  	$scope.pageSize = 10;
@@ -17,14 +17,15 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
 		$scope.create = function() {
 			// Create new Comment object
 			var comment = new Comments ({
-				author: this.author,
-				body: this.body
+				author: $scope.authentication.user.username,
+				body: this.body,
+				course: $scope.course._id
 			});
-
+			//alert($scope.course._id);
 			// Redirect after save
 			comment.$save(function(response) {
-				$location.path('comments/' + response._id);
-
+				//$location.path('comments/' + response._id);
+				$window.location.reload();
 				// Clear form fields
 				$scope.author = '';
 			}, function(errorResponse) {

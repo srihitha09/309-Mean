@@ -4,10 +4,10 @@
 		<p data-ng-bind="comment.body"></p>
 	</div>
 	<div class="pull-right">
-		<a class="btn btn-primary" href="/#!/comments/{{comment._id}}/edit">
+		<a class="btn btn-primary" href="/#!/comments/{{comment._id}}/edit" data-ng-if="comment.author == authentication.user.username || authentication.user.roles.indexOf('admin') != -1">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
+		<a class="btn btn-primary" data-ng-click="remove();" data-ng-if="comment.author == authentication.user.username || authentication.user.roles.indexOf('admin') != -1">
 			<i class="glyphicon glyphicon-trash"></i>
 		</a>
 	</div>

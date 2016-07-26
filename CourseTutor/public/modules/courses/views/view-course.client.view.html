@@ -24,12 +24,12 @@
     </div>
     <!-- this is the new search input field -->
     <div class="form-group">
-        <input type="text" ng-model="search" typeahead="comment as comment.body for comment in comments | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="commentSearch($item)" placeholder="Search Comment..." width="500">
+        <input type="text" ng-model="search" typeahead="comment as comment.body for comment in comments | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="commentSearch($item)" placeholder="Search Comment..." width="500" >
     </div>
     <!-- end -->
     <div class="list-group">
-        <a data-ng-repeat="comment in comments | limitTo: offset - comments.length | limitTo: pageSize" class="list-group-item">
-            <b class="list-group-item-heading" data-ng-bind="authentication.user.displayName"></b>
+        <a data-ng-repeat="comment in comments | limitTo: offset - comments.length | limitTo: pageSize" class="list-group-item" data-ng-if="course._id == comment.course">
+            <b class="list-group-item-heading" data-ng-bind="comment.author"></b>
             <span data-ng-bind="comment.body"></span>
         </a>
     </div>
