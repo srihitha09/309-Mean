@@ -17,11 +17,11 @@
 				</a>
 				<ul ng-switch-when="dropdown" class="dropdown-menu">
 				<!-- ADMIN VIEW -->
-					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="authentication.user.roles == 'admin'" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
+					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="authentication.user.roles.indexOf('admin') != -1" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
 						<a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title"></a>
 					</li>
 				<!-- USER VIEW - Remove the dom element which admin should only have access to-->
-					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="authentication.user.roles == 'user'" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
+					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="authentication.user.roles.indexOf('user') != -1" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
 						<a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title" data-ng-if="subitem.title != 'New Course'"></a>
 					</li>
 				</ul>
