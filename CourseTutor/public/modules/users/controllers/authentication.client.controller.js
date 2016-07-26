@@ -8,6 +8,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		if ($scope.authentication.user) $location.path('/');
 
 		$scope.signup = function() {
+			//if ($scope.credentials.roles)
 			$http.post('/auth/signup', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;
@@ -20,7 +21,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		};
 
 		$scope.stateChanged = function(checkbox){
-			 if($scope.authentication.user.checkbox === true){ //If it is checked
+			 if($scope.authentication.user.checkboxModel.tutor === true){ //If it is checked
        			alert('test');
    			}
 		};

@@ -44,21 +44,20 @@
 				</div>
 				<div class="form-group">
 					<label for="school">School</label>
-					<input type="text" id="school" name="school" class="form-control" data-ng-model="user.school" placeholder="School">
+					<input type="text" id="school" name="school" class="form-control" data-ng-model="credentials.school" placeholder="School">
 				</div>
 				<div class="form-group">
 					<label for="program">Program</label>
-					<input type="text" id="program" name="program" class="form-control" data-ng-model="user.program" placeholder="Program">
+					<input type="text" id="program" name="program" class="form-control" data-ng-model="credentials.program" placeholder="Program">
 				</div>
-				<!--<div class="form-group">
+				<div class="form-group">
 					<label for="program">Role</label>
 					<input type="text" id="program" name="program" class="form-control" data-ng-model="user.roles" placeholder="Tutor or Student">
-				</div>!-->
+				</div>
 				<div class="form-group">
-					<label>Tutor: <input type="checkbox" ng-model="checkboxModel.tutor" data-bg-model="user.roles">
+					<label>Tutor: <input type="checkbox" ng-model="checkboxModel.tutor" data-ng-model="credentials.roles">
   					</label><br/>
-  					<label>Student: <input type="checkbox" ng-model="checkboxModel.student" ng-true-value="'YES'" 
-  						ng-false-value="'NO'">
+  					<label>Student: <input type="checkbox" ng-model="checkboxModel.student" data-ng-model="credentials.roles">
    					</label><br/>
 				</div>
 

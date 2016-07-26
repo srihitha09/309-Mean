@@ -3,15 +3,23 @@
               <p data-ng-bind="user.aboutMe"></p>
             </section>
 
-            <section id="user-courses">
-              <ul class="course-list">
-                <li><a href="#">CSCA08</a></li>
-                <li><a href="#">CSCB09</a></li>
-                <li><a href="#">CSCC43</a></li>
-                <li><a href="#">CSCD58</a></li>
-                <li><a href="#">LINA01</a></li>
-              </ul>
-              </section>
+            <form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
+      <fieldset>
+        <div class="form-group">
+          <label for="course"></label>
+          <input type="text" id="course" name="course" class="form-control" data-ng-model="user.courses" placeholder="Course">
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-large btn-primary">Add</button>
+        </div>
+        <div data-ng-show="success" class="text-center text-success">
+          <strong>Profile Saved Successfully</strong>
+        </div>
+        <div data-ng-show="error" class="text-center text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
 
     </article>
   </section>

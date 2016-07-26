@@ -122,11 +122,16 @@ var UserSchema = new Schema({
 		trim: true,
 		default: []
 	},
+	
 	friends: {
 		type: Array,
 		//trim: true,
 		default: []
 	}
+
+	/*courses:
+		[{type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]*/
+
 });
 
 /**
