@@ -76,5 +76,35 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
 		$scope.commentSearch = function(product) {
 			$location.path('comments/' + product._id);
 		};
+
+		$scope.upvote = function(comment){
+			// Check if guy already downvoted, need to reupdate the voters list
+			var index = comment.downvoters.indexOf($scope.authentication.user.username);
+			if (index != -1){
+				comment.downvoters.splice(index, 1);
+			}
+			comment.upvotes++;
+			comment.upvoters.push($scope.authentication.user.username);
+			comment.$update(function() {
+				$location.path('comments/' + comment._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		$scope.downvote = function(comment){
+			// Check if guy already upvoted, need to reupdate the voters list
+			var index = comment.upvoters.indexOf($scope.authentication.user.username);
+			if (index != -1){
+				comment.upvoters.splice(index, 1);
+			}
+			comment.upvotes--;
+			comment.downvoters.push($scope.authentication.user.username);
+			comment.$update(function() {
+				$location.path('comments/' + comment._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 	}
 ]);
