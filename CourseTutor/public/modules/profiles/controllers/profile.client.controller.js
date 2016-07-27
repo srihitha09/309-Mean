@@ -285,6 +285,10 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			});
 		}
 
+		$scope.showCourse = function() {
+			showElementAndHideOthers('section#user-courses');
+		};
+
 		$scope.sendMessageInChat = function() {
 			if (typeof $scope.input_message !== 'undefined' && $scope.input_message.length > 0) {
 				var messageUrl = '/contact/sendMessage?my_id='+$scope.authentication.user._id

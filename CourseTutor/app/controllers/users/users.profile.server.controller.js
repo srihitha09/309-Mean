@@ -28,7 +28,7 @@ exports.update = function(req, res) {
 		user = _.extend(user, req.body);
 		user.updated = Date.now();
 		user.displayName = user.firstName + ' ' + user.lastName;
-		user.courses = [];
+		// user.courses = [];
 
 		Course.findOne({'name':courseName}).exec(function(err, coursesFound) {
 		if (err) {
