@@ -63,10 +63,7 @@ exports.signup = function(req, res) {
  * Signin after passport authentication
  */
 exports.signin = function(req, res, next) {
-	//console.log(req.body);
 	req.body.username = sanitizeHelper(req.body.username);
-	//req.body.password = sanitizeHelper(req.body.password);
-	//console.log(req.body);
 	passport.authenticate('local', function(err, user, info) {
 		if (err || !user) {
 			res.status(400).send(info);
@@ -227,21 +224,3 @@ function sanitizeHelper(v){
   return clean;
 }
 
-/*exports.createAdmin = function(req, res, next) {
-	
-	User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
-		user = new User({
-			firstName: 'Srihitha',
-			lastName: 'Maryada',
-			username: 'admin',
-			displayName: 'admin',
-			password: ''
-		});
-
-		// And save the user
-		user.save(function(err) {
-			return done(err, user);
-		});
-	});
-			
-}*/
