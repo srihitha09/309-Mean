@@ -28,6 +28,8 @@
 				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
 			</li>
 		</ul>
+
+
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li ui-route="/signup" ng-class="{active: $uiRoute}">
 				<a href="/#!/signup">Sign Up</a>
@@ -37,17 +39,22 @@
 				<a href="/#!/signin">Sign In</a>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
+		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user" data-ng-controller="ProfilesController" data-ng-init="find()">
 			<li class="dropdown" dropdown>
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" dropdown-toggle>
-					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
+					<span data-ng-bind="authentication.user.displayName" ng-click="create()"></span> <b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu">
+				    <li>
+				        <a data-ng-repeat="profile in profiles" data-ng-if="profile.username == authentication.user.username" data-ng-href="#!/profiles/{{profile._id}}" class="dropdown-item">
+				            <h4>Profile</h4>
+				        </a>
+				    </li>
+			        
 					<li>
-						<a href="/#!/settings/profile">Profile</a>
-					</li>
-					<li>
-						<a href="/#!/settings/editProfile">Edit Profile</a>
+				        <a data-ng-repeat="profile in profiles" data-ng-if="profile.username == authentication.user.username" data-ng-href="#!/profiles/{{profile._id}}/edit" class="dropdown-item">
+				            <h4>Edit Profile</h4>
+				        </a>
 					</li>
 					<li>
 						<a href="/#!/settings/accounts">Manage Social Accounts</a>
@@ -65,5 +72,6 @@
 				</ul>
 			</li>
 		</ul>
+
 	</nav>
 </div>
