@@ -270,7 +270,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			}
 		}
 
-		showChatWithContact = function(event) {
+		function showChatWithContact(event) {
 			var fetchConversationUrl = '/contact/getChatHistory?conv_id='+event.data.conv_id;
 			activeContactId = event.data.user_id;
 			activeContactName = event.data.user_name;
