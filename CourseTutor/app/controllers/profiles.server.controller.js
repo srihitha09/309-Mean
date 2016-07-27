@@ -27,6 +27,7 @@ exports.read = function(req, res) {
  * Update a profile
  */
 exports.update = function(req, res) {
+	//req.profile.fir
 	var profile = req.profile;
 
 	profile = _.extend(profile, req.body);
@@ -96,3 +97,8 @@ exports.profileByID = function(req, res, next, id) {
 		next();
 	});
 };
+
+function sanitizeHelper(v){
+   var clean = v.replace(/^\$/,'')
+  return clean;
+}

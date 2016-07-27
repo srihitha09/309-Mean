@@ -7,7 +7,9 @@ var _ = require('lodash'),
 	errorHandler = require('../errors.server.controller'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	sanitize = require('mongo-sanitize');
+
 
 /**
  * Signup
@@ -15,14 +17,23 @@ var _ = require('lodash'),
 exports.signup = function(req, res) {
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;
+	console.log(req.body);
 
+	req.body.firstName = sanitizeHelper(req.body.firstName);
+	req.body.lastName = sanitizeHelper(req.body.lastName);
+	req.body.email = sanitizeHelper(req.body.email);
+	req.body.username = sanitizeHelper(req.body.username);
+	//req.body.password = sanitizeHelper(req.body.password);
+	req.body.school = sanitizeHelper(req.body.school);
+	req.body.program = sanitizeHelper(req.body.program);
+	
 	// Init Variables
 	var user = new User(req.body);
 	var message = null;
 
 	// Add missing user fields
 	user.provider = 'local';
-	user.displayName = user.firstName + ' ' + user.lastName;
+	user.displayName = sanitize(user.firstName) + ' ' + sanitize(user.lastName);
 	//user.roles =  'user';
 	//console.log(req.body);
 
@@ -52,6 +63,10 @@ exports.signup = function(req, res) {
  * Signin after passport authentication
  */
 exports.signin = function(req, res, next) {
+	//console.log(req.body);
+	req.body.username = sanitizeHelper(req.body.username);
+	//req.body.password = sanitizeHelper(req.body.password);
+	//console.log(req.body);
 	passport.authenticate('local', function(err, user, info) {
 		if (err || !user) {
 			res.status(400).send(info);
@@ -206,6 +221,11 @@ exports.removeOAuthProvider = function(req, res, next) {
 		});
 	}
 };
+
+function sanitizeHelper(v){
+   var clean = v.replace(/^\$/,'')
+  return clean;
+}
 
 /*exports.createAdmin = function(req, res, next) {
 	
