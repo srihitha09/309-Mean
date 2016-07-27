@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>CourseTutor</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/profile.css" rel="stylesheet">
+    <script src="assets/scripts/jquery-2.2.4.min.js"></script>
+</head>
+<body>
+
+  <nav id="nav">
+<ul>
+  <li><a href="login.html">Login</a></li>
+  <li><a href="resources.html">Resources</a></li>
+  <li><a href="profile.html">Profile</a></li>
+  <li><a href="course_requests_page.html">Courses</a></li>
+  <li><a href="signup.html">Sign Up</a></li>
+  <li><form method="get" action="/search" id="search-general">
+  <input name="q" type="search" size="40" placeholder="Search..." />
+</form></li>
+</ul>
+</nav>
+
+<article class="container">
+    <section class="row profile">
+    <section class="col-md-3">
+      <section class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <section class="profile-userpic">
+          <img src="assets/img/avatar.png" class="img-responsive" alt="">
+        </section>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <section class="profile-usertitle">
+          <p class="profile-usertitle-name">
+            Srihitha 
+          </p>
+          <p class="profile-usertitle-job">
+            University of Toronto
+          </p>
+          <p class="profile-usertitle-program">
+            Computer Science Specialist
+          </p>
+          <p class="rating">
+            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+          </p>
+          <span class="badge-title"> Tutor </span>
+        </section>
+        <!-- END SIDEBAR USER TITLE -->
+       
+        <!-- SIDEBAR BUTTONS -->
+        <section class="profile-userbuttons">
+          <button type="button" class="btn btn-success btn-sm">Add Friend</button>
+          <button type="button" class="btn btn-danger btn-sm">Message</button>
+        </section>
+        <!-- END SIDEBAR BUTTONS -->
+        
+        <!-- SIDEBAR MENU -->
+        <nav id="profile-usermenu">
+          <ul class="nav">
+            <li class="active">
+              <a href="#about" class"sel"> About </a>
+            </li>
+            <li>
+              <a href="#courses"> Courses </a>
+            </li>
+            <li>
+              <a href="#resources"> Sessions </a>
+            </li>
+            <li>
+              <a href="#friends"> Friends </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- END MENU -->
+      </section>
+    </section>
+    <article class="profile-content" id="content">
+            <section id="about">
+              <p>My name is Sri. I am a 4th year Computer Science student.</p>
+              <p>I like teaching and love tutoring Computer Science courses. I have a very busy schedule so please
+                book sessions in advance</p>  
+            </section>
+
+            <section id="courses" class="hidden">
+              <ul class="course-list">
+                <li><a href="#">CSCA08</a></li>
+                <li><a href="#">CSCB09</a></li>
+                <li><a href="#">CSCC43</a></li>
+                <li><a href="#">CSCD58</a></li>
+                <li><a href="#">LINA01</a></li>
+              </ul>
+              </section>
+
+            <section id="sessions" class="hidden">
+              
+            </section>
+
+            <section id="friends" class="hidden">
+              Some user related content goes here...
+            </section>
+
+    </article>
+  </section>
+</article>
+<script type="text/javascript">
+$(function(){
+  $('#profile-usermenu ul li a').on('click', function(e){
+    e.preventDefault();
+    var newcontent = $(this).attr('href');
+    
+    $('#profile-usermenu ul li a').removeClass('sel');
+    $(this).addClass('sel');
+    
+    $('#content section').each(function(){
+      if(!$(this).hasClass('hidden')) { $(this).addClass('hidden'); }
+    });
+    
+    $(newcontent).removeClass('hidden');
+  });
+});
+</body>
+</html>
