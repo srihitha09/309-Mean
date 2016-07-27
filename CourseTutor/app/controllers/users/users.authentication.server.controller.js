@@ -7,8 +7,12 @@ var _ = require('lodash'),
 	errorHandler = require('../errors.server.controller'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
-	User = mongoose.model('User'),
+	User = mongoose.model('User');
 
+function sanitizeHelper(v){
+   var clean = v.replace(/^\$/,'');
+  return clean;
+}
 
 /**
  * Signup
@@ -16,7 +20,6 @@ var _ = require('lodash'),
 exports.signup = function(req, res) {
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;
-	console.log(req.body);
 
 	req.body.firstName = sanitizeHelper(req.body.firstName);
 	req.body.lastName = sanitizeHelper(req.body.lastName);
@@ -32,9 +35,7 @@ exports.signup = function(req, res) {
 
 	// Add missing user fields
 	user.provider = 'local';
-	user.displayName = sanitize(user.firstName) + ' ' + sanitize(user.lastName);
-	//user.roles =  'user';
-	//console.log(req.body);
+	user.displayName = user.firstName + ' ' + user.lastName;
 
 	// Then save the user 
 	user.save(function(err) {
@@ -218,8 +219,4 @@ exports.removeOAuthProvider = function(req, res, next) {
 	}
 };
 
-function sanitizeHelper(v){
-   var clean = v.replace(/^\$/,'')
-  return clean;
-}
 

@@ -98,7 +98,3 @@ exports.profileByID = function(req, res, next, id) {
 	});
 };
 
-function sanitizeHelper(v){
-   var clean = v.replace(/^\$/,'')
-  return clean;
-}
