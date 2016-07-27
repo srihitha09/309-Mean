@@ -8,7 +8,6 @@ var _ = require('lodash'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	User = mongoose.model('User'),
-	sanitize = require('mongo-sanitize');
 
 
 /**
