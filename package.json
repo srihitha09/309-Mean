@@ -7,9 +7,9 @@
     "npm": "3.10.5" 
   },
   "scripts": {
-    "start": "grunt",
+    "start": "node server.js",
     "test": "grunt test",
-    "postinstall": "bower install --config.interactive=false"
+    "postinstall": "bash ./post_install.sh"
   },
   "dependencies": {
     "express": "~4.10.1",
