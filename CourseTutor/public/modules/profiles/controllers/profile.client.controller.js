@@ -20,9 +20,11 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 				username: $scope.authentication.user.username,
 				firstName: $scope.authentication.user.firstName,
 				lastName: $scope.authentication.user.lastName,
+				displayName: $scope.authentication.user.displayName,
 				email: $scope.authentication.user.email,
 				school: $scope.authentication.user.school,
-				program: $scope.authentication.user.program
+				program: $scope.authentication.user.program,
+				userId: $scope.authentication.user._id
 			});
 
 			// Redirect after save by reload
@@ -80,6 +82,8 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		};
 
 		$scope.addCourse = function(profile){
+
+			// need to add person to both friends list 
 			profile.courses.push($scope.course);
 
 			profile.$update(function() {
@@ -87,6 +91,9 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 				//$scope.error = "Unable to add course";
+
+				//$scope.error = errorResponse.data.message;
+				$scope.error = 'Unable to add course';
 			});
 			
 		};
@@ -103,6 +110,51 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 				$scope.error = errorResponse.data.message;
 			});
 			
+		};
+
+		$scope.sendMessage = function() {
+			if (typeof $scope.input_message !== 'undefined' && $scope.input_message.length > 0) {
+				var messageUrl = '/contact/sendMessage?my_id='+$scope.authentication.user._id
+						+'&my_name='+$scope.authentication.user.displayName
+						+'&contact_id='+$scope.profile.userId
+						+'&contact_name='+$scope.profile.displayName
+						+'&text='+$scope.input_message;
+				$.ajax({
+					url: messageUrl,
+					method: 'POST',
+					success: function() {
+						$('textarea.post_message_textarea').val('');
+						var $alert_post_sending = $('p#alert_post_sending');
+						$alert_post_sending.css('color', '#326C32');
+						$alert_post_sending.html('Message sent!');
+						$alert_post_sending.show();
+					}
+				});
+			} else {
+				var $alert_post_sending = $('p#alert_post_sending');
+				$alert_post_sending.css('color', '#E32F35');
+				$alert_post_sending.html('Please type something before send?');
+				$alert_post_sending.show();
+			}
+		};
+
+		// display the send message page when clicking on 'message button'
+		$scope.showMessageBox = function() {
+			// clean up
+			$('textarea.post_message_textarea').val('');
+			$('p#alert_post_sending').hide();
+			// hide and show
+			$('section#about').hide();
+			$('section#send_message_wrapper').show();
+		};
+
+		$scope.hideMessageBox = function() {
+			// clean up
+			$('textarea.post_message_textarea').val('');
+			$('p#alert_post_sending').hide();
+			// hide and show
+			$('section#about').show();
+			$('section#send_message_wrapper').hide();
 		};
 
 	}

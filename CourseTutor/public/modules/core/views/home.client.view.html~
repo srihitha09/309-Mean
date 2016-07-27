@@ -50,7 +50,11 @@
             <div class="sp-globe"></div>
               <h2 class="frame-1">Welcome to CourseTutor</h2>
 
+              <!-- <h2 class="frame-2">It's mass, mechanized murder</h2>
 
+              <h2 class="frame-3">You can stop it</h2>
+
+              <h2 class="frame-4">Now!</h2> -->
 
               <h2 class="frame-5"><span>Find tutors and students today.</span> </h2>
   <a class="sp-circle-link" href="#">Join us!</a>

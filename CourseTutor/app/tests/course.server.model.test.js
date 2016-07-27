@@ -15,8 +15,8 @@ describe('Course Model', function() {
     describe('Saving', function() {
         it('saves new record', function(done) {
             var course = new Course({
-                name: 'Beverages',
-                description: 'Soft drinks, coffees, teas, beers, and ales'
+                name: 'CSC309',
+                description: 'Programming on the web'
             });
 
             course.save(function(err, saved) {
@@ -27,7 +27,7 @@ describe('Course Model', function() {
 
         it('throws validation error when name is empty', function(done) {   
             var course = new Course({
-                description: 'Soft drinks, coffees, teas, beers, and ales'
+                description: 'Intro to CS'
             });
 
             course.save(function(err) {
@@ -37,9 +37,9 @@ describe('Course Model', function() {
             });
         });
 
-       /* it('throws validation error when name longer than 15 chars', function(done) {
+        it('throws validation error when name longer than 15 chars', function(done) {
             var course = new Course({
-                name: 'Grains/Cereals/Chocolates'
+                name: 'CSC3099999999999999999999999999999999999'
             });
 
             course.save(function(err, saved) {
@@ -48,7 +48,7 @@ describe('Course Model', function() {
                 done();
             });
         });
-*/
+
 /*        it('throws validation error for duplicate course name', function(done) {
             var course = new Course({
                 name: 'Beverages'

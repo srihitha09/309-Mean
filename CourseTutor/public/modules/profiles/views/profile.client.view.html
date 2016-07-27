@@ -1,5 +1,5 @@
-<article class="container" data-ng-controller="ProfilesController" data-ng-init="findOne()">
-    <section class="row profile">
+<article class="container" data-ng-controller="ProfilesController" data-ng-init="findOne()" style="width: 100%;">
+    <section id="settings_profile_container" class="row profile">
     <section class="col-md-3">
       <section class="profile-sidebar">
         <div class="form-group" data-ng-controller="ProfilesController" data-ng-init="find()">
@@ -25,8 +25,8 @@
         <!-- SIDEBAR BUTTONS -->
         <section class="profile-userbuttons">
         <!-- Only show button if not friends and you're not trying to add yourself -->
-          <button data-ng-if="(authentication.user.username !== profile.username) && (profile.friends.indexOf(authentication.user.username) == -1)" type="button" class="btn btn-success btn-sm" ng-click="addFriend(profile)">Add Friend</button>
-          <button data-ng-if="authentication.user.username !== profile.username " type="button" class="btn btn-danger btn-sm" >Message</button>
+          <button data-ng-if="authentication.user.username !== profile.username && profile.friends.indexOf(authentication.user.username) == -1" type="button" class="btn btn-success btn-sm" ng-click="addFriend(profile)">Add Friend</button>
+          <button data-ng-if="authentication.user.username !== profile.username " type="button" class="btn btn-danger btn-sm" ng-click="showMessageBox()">Message</button>
         </section>
         <!-- END SIDEBAR BUTTONS -->
         
@@ -55,9 +55,17 @@
       </section>
     </section>
     <article class="profile-content" id="content" >
-            <section id="about">
-              <p data-ng-bind="profile.aboutMe"></p>
-            </section>
+        <section id="about">
+          <p data-ng-bind="profile.aboutMe"></p>
+        </section>
+        <section id="send_message_wrapper" style="display: none;">
+          <textarea class="post_message_textarea" rows="6" form="message_form" placeholder="Let's start talking!" ng-model="input_message"></textarea>
+          <form id="message_form" style="width: 90%; text-align: end;" data-ng-submit="sendMessage()">
+            <p id="alert_post_sending" style="display: none;"></p>
+            <a href="javascript:void 0;" ng-click="hideMessageBox()">Cancel</a>
+            <input type="submit" value="Send">
+          </form>
+        </section>
     </article>
   </section>
 </article>

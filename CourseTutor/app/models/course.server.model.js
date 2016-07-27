@@ -7,6 +7,14 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
+ * Validation
+ */
+function validateLength (v) {
+  // a custom validation function for checking string length to be used by the model
+  return v.length <= 15;
+}
+
+/**
  * Course Schema
  */
 var CourseSchema = new Schema({
@@ -26,7 +34,8 @@ var CourseSchema = new Schema({
 		default: '',
 		trim: true,
 		unique: true,
-		required: 'name cannot be blank'
+		required: 'name cannot be blank',
+		validate: [validateLength, 'name must be 15 chars in length or less']
 	},
 	program: {
 		type: String,

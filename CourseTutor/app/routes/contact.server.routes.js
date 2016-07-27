@@ -5,7 +5,7 @@ module.exports = function(app) {
 	var conversations = require('../../app/controllers/conversation.server.controller');
 
 	app.route('/contact/sendMessage?')
-		.get(contacts.trySaveMessage);
+		.post(contacts.trySaveMessage);
 
 	app.route('/contact/findContact?')
 		.get(contacts.read);

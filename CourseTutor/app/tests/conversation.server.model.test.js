@@ -17,34 +17,31 @@ var user, conversation;
  * Unit tests
  */
 describe('Conversation Model Unit Tests:', function() {
-	beforeEach(function(done) {
-		user = new User({
-			firstName: 'Full',
-			lastName: 'Name',
-			displayName: 'Full Name',
-			email: 'test@test.com',
-			username: 'username',
-			password: 'password'
-		});
+	describe('Saving', function() {
+        it('saves new record', function(done) {
+            var conversation = new Conversation({
+                name: 'CSC309',
+                description: 'Programming on the web'
+            });
 
-		user.save(function() { 
-			conversation = new Conversation({
-				// Add model fields
-				// ...
-			});
+            conversation.save(function(err, saved) {
+                should.not.exist(err);
+                done();
+            });
+        });
 
-			done();
-		});
-	});
+        /*it('throws validation error when name is empty', function(done) {   
+            var conversation = new Conversation({
+                description: 'Intro to CS'
+            });
 
-	describe('Method Save', function() {
-		it('should be able to save without problems', function(done) {
-			return conversation.save(function(err) {
-				should.not.exist(err);
-				done();
-			});
-		});
-	});
+            conversation.save(function(err) {
+                should.exist(err);
+                err.errors.name.message.should.equal('name cannot be blank');
+                done();
+            });
+        });*/
+    });
 
 	afterEach(function(done) { 
 		Conversation.remove().exec();
