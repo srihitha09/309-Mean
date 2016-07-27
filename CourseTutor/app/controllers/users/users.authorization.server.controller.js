@@ -61,7 +61,7 @@ exports.isAdmin = function() {
 
 	return function(req, res, next) {
 		_this.requiresLogin(req, res, function() {
-			if (req.user.username === 'sri') {
+			if (req.user.roles === 'sri') {
 				return next();
 			} else {
 				return res.status(403).send({

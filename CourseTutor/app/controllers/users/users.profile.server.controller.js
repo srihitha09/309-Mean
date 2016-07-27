@@ -36,25 +36,33 @@ exports.update = function(req, res) {
 				message: 'Cannot find course'
 			});
 		} else {
-			courseId = coursesFound._id;
-			user.courses.push(courseId);
-			user.save(function(err) {
-			if (err) {
+			if (coursesFound === null){
 				return res.status(400).send({
-					message: 'Cannot add course'
-				});
-			} else {
-				req.login(user, function(err) {
-					if (err) {
-						res.status(400).send(err);
-					} else {
-						res.json(user);
-					}
+					message: 'Cannot find course'
 				});
 			}
-			console.log(user.courses);
-			//console.log(courseName);
-		});
+			else{
+				courseId = coursesFound._id;
+				user.courses.push(courseId);
+				user.save(function(err) {
+				if (err) {
+					return res.status(400).send({
+						message: 'Cannot add course'
+					});
+				} else {
+					req.login(user, function(err) {
+						if (err) {
+							res.status(400).send(err);
+						} else {
+							res.json(user);
+						}
+					});
+				}
+				console.log(user.courses);
+				//console.log(courseName);
+			});
+			}
+			
 		}
 		});
 		//console.log(courseId);

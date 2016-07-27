@@ -55,7 +55,7 @@ exports.forgot = function(req, res, next) {
 			}
 		},
 		function(token, user, done) {
-			res.render('templates/reset-password-email', {
+			res.render('/views/templates/reset-password-email', {
 				name: user.displayName,
 				appName: config.app.title,
 				url: 'http://' + req.headers.host + '/auth/reset/' + token

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
+angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', '$window', 'Users', 'Authentication',
+	function($scope, $http, $location, $window, Users, Authentication) {
 		$scope.user = Authentication.user;
 
 		// If user is not signed in then redirect back home
@@ -43,6 +43,10 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			if (isValid) {
 				$scope.success = $scope.error = null;
 				var user = new Users($scope.user);
+				console.log(user.courses);
+				console.log($scope.course);
+				//user.courses.push($scope.course);
+
 
 				user.$update(function(response) {
 					$scope.success = true;
@@ -54,23 +58,35 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				$scope.submitted = true;
 			}
 			$scope.user.courses = '';
+			//console.log($scope.course);
+			console.log($scope.user.courses);
 		};
 
 		// Update a user profile
 		$scope.updateUserCourses = function(isValid) {
 			if (isValid) {
 				$scope.success = $scope.error = null;
-				var user = new Users($scope.user);
+				//var user = new Users($scope.user);
 
-				user.$updateCourses(function(response) {
+				//$scope.user.courses.push($scope.course);
+
+				var user= new Users ({
+				courses: $scope.course
+			});
+
+				user.$update(function(response) {
 					$scope.success = true;
 					Authentication.user = response;
+					$scope.user.courses = '';			
 				}, function(response) {
 					$scope.error = response.data.message;
 				});
 			} else {
 				$scope.submitted = true;
+				$scope.user.courses = '';
 			}
+			console.log($scope.course);
+			console.log($scope.user.courses);
 		};
 
 		// Change user password

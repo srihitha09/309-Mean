@@ -60,11 +60,7 @@ exports.down = function(next) {
         method: 'delete',
         body: c,
         json: true,
-        url: 'http://localhost:3000/courses',
-        auth: {
-          user: 'admin',
-          pass: 'password'
-        }
+        url: 'http://localhost:3000/courses'
     };
 
     request(options, function (err, response) {
