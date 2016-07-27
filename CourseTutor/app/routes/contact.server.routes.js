@@ -7,8 +7,8 @@ module.exports = function(app) {
 	app.route('/contact/sendMessage?')
 		.post(contacts.trySaveMessage);
 
-	app.route('/contact/findContact?')
-		.get(contacts.read);
+	app.route('/contact/getChatHistory?')
+		.get(contacts.fetchConversation);
 
 	app.route('/contact/listContacts?')
 		.get(contacts.list);

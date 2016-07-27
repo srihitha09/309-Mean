@@ -22,7 +22,8 @@ function createContactAndConversation(myId, myName, contactId, contactName, mess
 		var historyObj = [{
 			from: myName,
 			to: contactName,
-			body: message
+			body: message,
+			timestamp: new Date()
 		}];
 		conversation.history = JSON.stringify(historyObj);
 	}
@@ -78,7 +79,8 @@ function updateConversation(conversation_id, whom_from, whom_to, message, onErro
 			history.unshift({
 				from: whom_from,
 				to: whom_to,
-				body: message
+				body: message,
+				timestamp: new Date()
 			});
 			conversation.history = JSON.stringify(history);
 			conversation.save(function(err) {
@@ -184,7 +186,7 @@ exports.delete = function(req, res) {
 /**
  * List of Contacts of current user
  * example url:
- * create?my_id=val
+ * /contact/listContacts?my_id=val
  */
 exports.list = function(req, res) {
 	Contact.find({ my_id : req.query.my_id }).exec(function(err, contacts){
@@ -195,6 +197,23 @@ exports.list = function(req, res) {
 		} else {
 			res.json(contacts);
 		}
+	});
+};
+
+/**
+ * Fetch a conversation using id.
+ * example url:
+ * /contact/getChatHistory?conv_id=val
+ */
+exports.fetchConversation = function(req, res) {
+	Conversation.findById(req.query.conv_id).exec(function(err, conversation){
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		}
+
+		res.json(JSON.parse(conversation.history));
 	});
 };
 

@@ -112,6 +112,11 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			
 		};
 
+		$scope.showAbout = function() {
+			$('article#content > :not(#about)').hide();
+			$('section#about').show();
+		};
+
 		$scope.sendMessage = function() {
 			if (typeof $scope.input_message !== 'undefined' && $scope.input_message.length > 0) {
 				var messageUrl = '/contact/sendMessage?my_id='+$scope.authentication.user._id
@@ -156,6 +161,109 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			$('section#about').show();
 			$('section#send_message_wrapper').hide();
 		};
+
+		$scope.showContacts = function() {
+			var listUrl = '/contact/listContacts?my_id='+$scope.authentication.user._id;
+			$.ajax({
+				url: listUrl,
+				method: 'GET',
+				success: function(contactList) {
+					var $wrapper = $('section#contacts_wrapper');
+					var i=0; 
+					while(i<contactList.length) {
+						var newMessageAlert = '';
+						if (!contactList[i].has_new_message) {
+							newMessageAlert = 'New message!';
+						}
+						var $item = $('<section/>', {
+							style: 'display: flex; margin-left: 10px; background-color: #f6f9fb; cursor: pointer; text-align: left;'
+						});
+						$item.append($('<img/>', {
+							src: '/modules/profiles/img/talk_blue.png',
+							style: 'width: 50px; height: 50px; margin: 10px;'
+						}));
+						var $item_info_wrap = $('<section/>');
+						$item_info_wrap.append($('<p/>', {
+							text: contactList[i].contact_name,
+							style: 'font-size: 20px; margin: 15px 0 0 0;'
+						}));
+						$item_info_wrap.append($('<p/>', {
+							text: newMessageAlert,
+							style: 'margin: 0; color: red;'
+						}));
+						$item.append($item_info_wrap);
+						$item.on('click', {id : contactList[i].conversation_id} ,showChatWithContact);
+						$wrapper.append($item);
+
+						i++;
+					}
+				}
+			});
+
+			$('section#about').hide();
+			$('section#contacts_wrapper').show();
+		};
+
+		function showChatWithContact(event) {
+			var fetchConversationUrl = '/contact/getChatHistory?conv_id='+event.data.id;
+			$.ajax({
+				url: fetchConversationUrl,
+				method: 'GET',
+				success: function(history) {
+					// history is a list of objects representing each message
+					// Each object has three properties.
+					// from: name of the person sent this message
+					// to: name of the person receives this message
+					// body: message content
+					// timestamp: timestamp of this message
+					var i=0;
+					while (i<history.length) {
+						var $wrapper = $('section#chat_wrapper');
+
+						var styleString = '';
+						var imgFileName = '';
+						if (history[i].from === $scope.authentication.user.displayName) {
+							styleString = 'text-align: right; flex-direction: row-reverse;';
+							imgFileName = 'talk_green.png';
+						} else {
+							styleString = 'text-align: left; flex-direction: row;';
+							imgFileName = 'talk_blue.png';
+						}
+
+						var $item = $('<section/>', {
+							style: 'display: flex; margin-left: 10px; background-color: #f6f9fb; '+styleString
+						});
+						$item.append($('<img/>', {
+							src: '/modules/profiles/img/'+imgFileName,
+							style: 'width: 40px; height: 40px; margin: 10px;'
+						}));
+
+						var $item_content_wrap = $('<section/>');
+						$item_content_wrap.append($('<p/>', {
+							text: history[i].from,
+							style: 'font-size: 20px; margin: 15px 0 0 0;'
+						}));
+						$item_content_wrap.append($('<p/>', {
+							text: history[i].timestamp,
+							style: 'font-size: 10px; margin: 0;'
+						}));
+						$item_content_wrap.append($('<p/>', {
+							text: history[i].body,
+							style: 'margin: 0;'
+						}));
+
+						$item.append($item_content_wrap);
+						$wrapper.append($item);
+
+						i++;
+					}
+
+					$('section#contacts_wrapper').hide();
+					$('section#chat_wrapper').show();
+					console.log(history);
+				}
+			});
+		}
 
 	}
 ]);
