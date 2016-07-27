@@ -11,6 +11,14 @@ module.exports = function(grunt) {
 		mochaTests: ['app/tests/**/*.js']
 	};
 
+		grunt.loadNpmTasks('grunt-ng-annotate');
+
+	grunt.loadNpmTasks('ngAnnotate');
+
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+
+	grunt.registerTask('default', ['ngAnnotate', 'uglify']);
+
 	// Project Configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -71,7 +79,8 @@ module.exports = function(grunt) {
 					mangle: false
 				},
 				files: {
-					'public/dist/application.min.js': 'public/dist/application.js'
+					'public/dist/application.min.js': 'public/dist/application.js',
+					'public/modules/users/config/users.client.config.min.js': 'public/modules/users/config/users.client.config.js'
 				}
 			}
 		},
@@ -108,7 +117,8 @@ module.exports = function(grunt) {
 		ngAnnotate: {
 			production: {
 				files: {
-					'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
+					'public/dist/application.js': '<%= applicationJavaScriptFiles %>',
+					'public/modules/users/config/users.client.config.js' : '<%= applicationJavaScriptFiles %>'
 				}
 			}
 		},
@@ -174,4 +184,5 @@ module.exports = function(grunt) {
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+
 };
