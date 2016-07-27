@@ -79,6 +79,21 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			$location.path('profiles/' + product._id);
 		};
 
+			$scope.addCourse = function(profile){
+
+			// need to add person to both friends list 
+			
+			profile.courses.push($scope.course);
+
+			profile.$update(function() {
+				$location.path('profiles/' + profile._id);
+			}, function(errorResponse) {
+				//$scope.error = errorResponse.data.message;
+				$scope.error = "Unable to add course";
+			});
+			
+		};
+
 		$scope.addFriend = function(profile){
 
 			// need to add person to both friends list 

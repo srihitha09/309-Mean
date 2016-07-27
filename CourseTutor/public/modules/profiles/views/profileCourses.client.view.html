@@ -58,20 +58,27 @@
     </section>
 
     <!--Courses -->
-   <article class="profile-content" id="content" data-ng-controller="ProfilesController">
-              <section id="about">
-                <p data-ng-bind="profile.aboutMe"></p>
-              </section>
+   <article class="profile-content" id="content" data-ng-controller="ProfilesController" data-ng-init="find()">
 
-              <section id="user-courses">
-                <ul class="course-list">
-                  <li><a href="#">CSCA08</a></li>
-                  <li><a href="#">CSCB09</a></li>
-                  <li><a href="#">CSCC43</a></li>
-                  <li><a href="#">CSCD58</a></li>
-                  <li><a href="#">LINA01</a></li>
-                </ul>
-                </section>
+      <section id="user-courses">
+        <form name="userForm" data-ng-submit="addCourse(profile)" class="signin form-horizontal" autocomplete="off">
+        <fieldset>
+        <div class="form-group">
+          <label for="course"></label>
+          <input type="text" id="course" name="course" class="form-control" placeholder="Enter course code">
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-large btn-primary">Add</button>
+        </div>
+        <div data-ng-show="success" class="text-center text-success">
+          <strong>Profile Saved Successfully</strong>
+        </div>
+        <div data-ng-show="error" class="text-center text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div>
+      </fieldset>
+      </form>
+      </section>
 
       </article>
     </section>

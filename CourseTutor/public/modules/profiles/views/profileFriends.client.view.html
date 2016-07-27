@@ -56,16 +56,14 @@
     </section>
 
     <!--Friends -->
-     <article class="profile-content" id="content" data-ng-controller="ProfilesController" data-ng-init="find()">
-                <section id="about">
-                  <p data-ng-bind="profile.aboutMe"></p>
-                </section>
-
+     <article class="profile-content" id="about" data-ng-controller="ProfilesController" data-ng-init="find()">
+                <section id="user-courses">
                 <a data-ng-repeat="profile in profiles" data-ng-href="#!/profiles/{{profile._id}}" class="dropdown-item">
                   <a data-ng-repeat="friend in profile.friends" class="dropdown-item">
                       <h4>{{friend}}</h4>
                   </a>
                 </a>
+              </section>
 
         </article>
       </section>

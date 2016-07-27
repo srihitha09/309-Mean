@@ -1,4 +1,11 @@
  <article class="profile-content" id="content" data-ng-controller="SettingsController">
+
+            <div class="list-group" data-ng-controller="CoursesController">
+        <a data-ng-repeat="course in courses | limitTo: offset - courses.length | limitTo: pageSize" data-ng-href="#!/courses/{{course._id}}" class="list-group-item">
+            <h4 class="list-group-item-heading" data-ng-bind="course.name"></h4>
+            <span data-ng-bind="course.description"></span>
+        </a>
+    </div>
             <section id="about">
               <p data-ng-bind="user.aboutMe"></p>
             </section>
