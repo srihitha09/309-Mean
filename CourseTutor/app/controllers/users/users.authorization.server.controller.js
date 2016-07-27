@@ -5,7 +5,8 @@
  */
 var _ = require('lodash'),
 	mongoose = require('mongoose'),
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	sanitize = require('mongo-sanitize');
 
 /**
  * User middleware

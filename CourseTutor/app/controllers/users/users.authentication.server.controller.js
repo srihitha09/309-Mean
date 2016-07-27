@@ -9,6 +9,11 @@ var _ = require('lodash'),
 	passport = require('passport'),
 	User = mongoose.model('User');
 
+function sanitizeHelper(v){
+   var clean = v.replace(/^\$/,'');
+  return clean;
+}
+
 /**
  * Signup
  */
@@ -16,6 +21,14 @@ exports.signup = function(req, res) {
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;
 
+	req.body.firstName = sanitizeHelper(req.body.firstName);
+	req.body.lastName = sanitizeHelper(req.body.lastName);
+	req.body.email = sanitizeHelper(req.body.email);
+	req.body.username = sanitizeHelper(req.body.username);
+	//req.body.password = sanitizeHelper(req.body.password);
+	req.body.school = sanitizeHelper(req.body.school);
+	req.body.program = sanitizeHelper(req.body.program);
+	
 	// Init Variables
 	var user = new User(req.body);
 	var message = null;
@@ -23,8 +36,6 @@ exports.signup = function(req, res) {
 	// Add missing user fields
 	user.provider = 'local';
 	user.displayName = user.firstName + ' ' + user.lastName;
-	//user.roles =  'user';
-	//console.log(req.body);
 
 	// Then save the user 
 	user.save(function(err) {
@@ -52,6 +63,7 @@ exports.signup = function(req, res) {
  * Signin after passport authentication
  */
 exports.signin = function(req, res, next) {
+	req.body.username = sanitizeHelper(req.body.username);
 	passport.authenticate('local', function(err, user, info) {
 		if (err || !user) {
 			res.status(400).send(info);
@@ -207,21 +219,4 @@ exports.removeOAuthProvider = function(req, res, next) {
 	}
 };
 
-/*exports.createAdmin = function(req, res, next) {
-	
-	User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
-		user = new User({
-			firstName: 'Srihitha',
-			lastName: 'Maryada',
-			username: 'admin',
-			displayName: 'admin',
-			password: ''
-		});
 
-		// And save the user
-		user.save(function(err) {
-			return done(err, user);
-		});
-	});
-			
-}*/
