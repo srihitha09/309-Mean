@@ -1,7 +1,5 @@
-
-
- <article class="container" data-ng-controller="ProfilesController" data-ng-init="findOne()">
-    <section class="row profile">
+<article class="container" data-ng-controller="ProfilesController" data-ng-init="findOne()" style="width: 100%; margin-top: 50px;"> 
+    <section id="settings_profile_container" class="row profile">
     <section class="col-md-3">
       <section class="profile-sidebar">
         <div class="form-group" data-ng-controller="ProfilesController" data-ng-init="find()">
@@ -20,7 +18,7 @@
           <p class="rating">
             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
           </p>
-          <span class="badge-title" data-ng-bind="user.role"> </span>
+          <span class="badge-title" data-ng-bind="profile.role"> </span>
         </section>
         <!-- END SIDEBAR USER TITLE -->
        
@@ -28,15 +26,15 @@
         <section class="profile-userbuttons">
         <!-- Only show button if not friends and you're not trying to add yourself -->
           <button data-ng-if="authentication.user.username !== profile.username && profile.friends.indexOf(authentication.user.username) == -1" type="button" class="btn btn-success btn-sm" ng-click="addFriend(profile)">Add Friend</button>
-          <button data-ng-if="authentication.user.username !== profile.username " type="button" class="btn btn-danger btn-sm" >Message</button>
+          <button data-ng-if="authentication.user.username !== profile.username" type="button" class="btn btn-danger btn-sm" ng-click="showMessageBox()">Message</button>
         </section>
         <!-- END SIDEBAR BUTTONS -->
         
         <!-- SIDEBAR MENU -->
         <nav id="profile-usermenu" data-ng-controller="ProfilesController" data-ng-init="find()" >
           <ul class="nav">
-            <li class="active">
-              <a href="#about"> About </a>
+            <li class="active" ng-click="showAbout()">
+              <a data-ng-href="#!/profiles/{{profile._id}}"> About </a>
             </li>
             <li>
                 <a data-ng-href="#!/profiles/{{profile._id}}/courses" class="dropdown-item">
@@ -51,40 +49,59 @@
                     <h4>Friends</h4>
                 </a>
             </li>
+            <li data-ng-if="authentication.user._id === profile.userId" ng-click="showContacts()">
+              <a href="javascript:void(0)">Contacts</a>
+            </li>
           </ul>
         </nav>
         <!-- END MENU -->
       </section>
     </section>
+    <article class="profile-content" id="content" >
+      <!--Courses -->
+     <article class="profile-content" id="content" data-ng-controller="ProfilesController" data-ng-init="find()">
 
-    <!--Courses -->
-   <article class="profile-content" id="content" data-ng-controller="ProfilesController" data-ng-init="find()">
-
-      <section id="user-courses">
-        <form name="userForm" data-ng-submit="addCourse(profile)" class="signin form-horizontal" autocomplete="off">
-        <fieldset>
-        <div class="form-group">
-          <label for="course"></label>
-          <input type="text" id="course" name="course" class="form-control" placeholder="Enter course code">
-        </div>
-        <div class="text-center form-group">
-          <button type="submit" class="btn btn-large btn-primary">Add</button>
-        </div>
-        <div data-ng-show="success" class="text-center text-success">
-          <strong>Profile Saved Successfully</strong>
-        </div>
-        <div data-ng-show="error" class="text-center text-danger">
-          <strong data-ng-bind="error"></strong>
-        </div>
-      </fieldset>
-      </form>
-      </section>
+        <section id="user-courses">
+          <form name="userForm" data-ng-submit="addCourse(profile)" class="signin form-horizontal" autocomplete="off">
+          <fieldset>
+          <div class="form-group">
+            <label for="course"></label>
+            <input type="text" id="course" name="course" class="form-control" placeholder="Enter course code">
+          </div>
+          <div class="text-center form-group">
+            <button type="submit" class="btn btn-large btn-primary">Add</button>
+          </div>
+          <div data-ng-show="success" class="text-center text-success">
+            <strong>Profile Saved Successfully</strong>
+          </div>
+          <div data-ng-show="error" class="text-center text-danger">
+            <strong data-ng-bind="error"></strong>
+          </div>
+        </fieldset>
+        </form>
+        </section>
 
       </article>
-    </section>
-  </article>
+        <!-- When clicking 'Message' button -->
+        <section id="send_message_wrapper" style="display: none;">
+          <textarea class="post_message_textarea" rows="6" form="message_form" placeholder="Let's start chatting!" ng-model="input_message"></textarea>
+          <form id="message_form" style="width: 90%; text-align: end;" data-ng-submit="sendMessage()">
+            <p id="alert_post_sending" style="display: none;"></p>
+            <a href="javascript:void 0;" ng-click="hideMessageBox()">Cancel</a>
+            <input type="submit" value="Send">
+          </form>
+        </section>
+        <!-- Display contacts -->
+        <section id="contacts_wrapper" style="display: none;"></section>
+        <section id="chat_wrapper" style="display: none;">
+          <textarea class="post_message_textarea" rows="6" form="in_chat_message_form" placeholder="Let's start chatting!" ng-model="input_message"></textarea>
+          <form id="in_chat_message_form" style="width: 90%; text-align: end;" data-ng-submit="sendMessageInChat()">
+            <input type="submit" value="Send">
+          </form>
+        </section>
+    </article>
+  </section>
+</article>
 
-  </article>
 
 
-</section>

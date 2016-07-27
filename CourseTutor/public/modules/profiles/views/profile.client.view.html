@@ -34,7 +34,7 @@
         <nav id="profile-usermenu" data-ng-controller="ProfilesController" data-ng-init="find()" >
           <ul class="nav">
             <li class="active" ng-click="showAbout()">
-              <a href="javascript:void(0)"> About </a>
+              <a data-ng-href="#!/profiles/{{profile._id}}"> About </a>
             </li>
             <li>
                 <a data-ng-href="#!/profiles/{{profile._id}}/courses" class="dropdown-item">
