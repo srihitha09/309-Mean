@@ -104,7 +104,6 @@ exports.read = function(req, res) {
  				message: errorHandler.getErrorMessage(err)
  			});
  		} else {
- 			console.log(contact);
  			res.json(contact);
  		}
  	});
@@ -114,7 +113,7 @@ exports.read = function(req, res) {
  * Try save message to conversation.
  * If contact not exist, create one; if exist, update conversation
  * example url:
- * create?my_id=val&contact_id=val&contact_name=val&text=val
+ * sendMessage?my_id=val&my_name=val&contact_id=val&contact_name=val&text=val
  */
 exports.trySaveMessage = function(req, res) {
 	Contact.findOne({ my_id:req.query.my_id, contact_id:req.query.contact_id }).exec(function(err, contact) {
@@ -122,56 +121,56 @@ exports.trySaveMessage = function(req, res) {
  			return res.status(400).send({
  				message: errorHandler.getErrorMessage(err)
  			});
- 		} else {
- 			if (contact === null) {
- 				createContactAndConversation(
- 					req.query.my_id, 
- 					req.query.my_name, 
- 					req.query.contact_id, 
-					req.query.contact_name,
-					req.query.text,
-					function(err) {
-						return res.status(400).send({
-							message: errorHandler.getErrorMessage(err)
-						});
-					},
-					function(resultConversation) {
-					  	res.status(201).json(resultConversation);
+ 		} 
+
+		if (contact === null) {
+			createContactAndConversation(
+				req.query.my_id, 
+				req.query.my_name, 
+				req.query.contact_id, 
+				req.query.contact_name,
+				req.query.text,
+			function(err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			},
+			function(resultConversation) {
+			  	res.status(201).end();
+			});
+		} else {
+			updateConversation(
+				contact.conversation_id, 
+				req.query.my_name, 
+				req.query.contact_name, 
+				req.query.text,
+				function(err) {
+					return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+				},
+				function(resultConversation) {
+					res.status(201).end();
+				});
+			
+			// next, update the has_new_message property of the contact
+			Contact.findOne({ my_id:req.query.contact_id, contact_id:req.query.my_id }).exec(function(err, contact) {
+				if (err || contact === null) {
+					return res.status(400).send({
+						message: errorHandler.getErrorMessage(err)
 					});
- 			} else {
- 				updateConversation(
- 					contact.conversation_id, 
- 					req.query.my_name, 
- 					req.query.contact_name, 
- 					req.query.text,
- 					function(err) {
- 						return res.status(400).send({
-							message: errorHandler.getErrorMessage(err)
-						});
- 					},
- 					function(resultConversation) {
- 						res.status(201).json(resultConversation);
- 					});
- 				
- 				// next, update the has_new_message property of the contact
- 				Contact.findOne({ my_id:req.query.contact_id, contact_id:req.query.my_id }).exec(function(err, contact) {
- 					if (err || contact === null) {
- 						return res.status(400).send({
- 							message: errorHandler.getErrorMessage(err)
- 						});
- 					} else {
- 						contact.has_new_message = true;
- 						contact.save(function(err) {
-							if (err) {
-								return res.status(400).send({
-									message: errorHandler.getErrorMessage(err)
-								});
-							}
-						});
- 					}
- 				});
- 			}
- 		}
+				} 
+
+			contact.has_new_message = true;
+			contact.save(function(err) {
+				if (err) {
+					return res.status(400).send({
+						message: errorHandler.getErrorMessage(err)
+					});
+				}
+			});
+			});
+		}
  	});
 };
 

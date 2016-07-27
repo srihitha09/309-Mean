@@ -72,6 +72,10 @@ var ProfileSchema = new Schema({
 		type: Array,
 		//trim: true,
 		default: []
+	},
+	userId: {
+		type: String,
+		unique: true
 	}
 });
 
