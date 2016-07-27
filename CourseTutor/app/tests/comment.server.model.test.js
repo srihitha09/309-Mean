@@ -17,35 +17,53 @@ var user, comment;
  * Unit tests
  */
 describe('Comment Model Unit Tests:', function() {
-	beforeEach(function(done) {
-		user = new User({
-			firstName: 'Full',
-			lastName: 'Name',
-			displayName: 'Full Name',
-			email: 'test@test.com',
-			username: 'username',
-			password: 'password'
-		});
+	describe('Saving', function() {
+        it('saves new record', function(done) {
+            var comment = new Comment({
+                body: 'New comment'
+            });
 
-		user.save(function() { 
-			comment = new Comment({
-				// Add model fields
-				// ...
-			});
+            comment.save(function(err, saved) {
+                should.not.exist(err);
+                done();
+            });
+        });
 
-			done();
-		});
-	});
+       
 
-	describe('Method Save', function() {
-		it('should be able to save without problems', function(done) {
-			return comment.save(function(err) {
-				should.not.exist(err);
-				done();
-			});
-		});
-	});
+       /* it('throws validation error when name longer than 15 chars', function(done) {
+            var comment = new Comment({
+                name: 'Grains/Cereals/Chocolates'
+            });
 
+            comment.save(function(err, saved) {
+                should.exist(err);
+                err.errors.name.message.should.equal('name must be 15 chars in length or less');
+                done();
+            });
+        });
+*/
+/*        it('throws validation error for duplicate comment name', function(done) {
+            var comment = new Comment({
+                name: 'Beverages'
+            });
+
+            comment.save(function(err) {
+                should.not.exist(err);
+
+                var duplicate = new Comment({
+                    name: 'Beverages'
+                });
+
+                duplicate.save(function(err) {
+                    err.err.indexOf('$name').should.not.equal(-1);
+                    err.err.indexOf('duplicate key error').should.not.equal(-1);
+                    should.exist(err);
+                    done();
+                });
+            });
+        });*/
+    });
 	afterEach(function(done) { 
 		Comment.remove().exec();
 		User.remove().exec();
