@@ -20,6 +20,10 @@ angular.module('profiles').config(['$stateProvider',
 		state('profileFriends', {
 			url: '/profiles/:profileId/friends',
 			templateUrl: 'modules/profiles/views/profileFriends.client.view.html'
+		}).
+		state('profileCourses', {
+			url: '/profiles/:profileId/courses',
+			templateUrl: 'modules/profiles/views/profileCourses.client.view.html'
 		});
 	}
 ]);
