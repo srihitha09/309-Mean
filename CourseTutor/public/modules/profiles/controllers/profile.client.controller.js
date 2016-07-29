@@ -6,8 +6,8 @@ var activeContactId;
 var activeContactName;
 
 // profiles controller
-angular.module('profiles').controller('ProfilesController', ['$scope', '$stateParams', '$location', '$window', 'Authentication', 'Profiles',
-	function($scope, $stateParams, $location, $window, Authentication, Profiles) {
+angular.module('profiles').controller('ProfilesController', ['$scope', '$stateParams', '$location', '$window', 'Authentication', 'Profiles', '$http',
+	function($scope, $stateParams, $location, $window, Authentication, Profiles, $http) {
 		$scope.authentication = Authentication;
 	  	$scope.currentPage = 1;
 	  	$scope.pageSize = 10;
@@ -28,6 +28,8 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		// Create new Profile
 		$scope.create = function() {
 			// Create new Profile object
+			
+
 			var profile = new Profiles ({
 				username: $scope.authentication.user.username,
 				firstName: $scope.authentication.user.firstName,
@@ -41,11 +43,14 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 
 			// Redirect after save by reload
 			profile.$save(function(response) {
+				$window.location.reload();
 				// Clear form fields
 				$scope.author = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+			
+
 		};
 
 		// Remove existing Profile
@@ -96,7 +101,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		$scope.addCourse = function(profile, product){
 
 			// Check if they already have the course, no duplicates
-			if (profile.courses.indexOf(product.name) != -1){
+			if (profile.courses.indexOf(product.name) !== -1){
 				alert("This course is already in your list!");
 			}
 			else{

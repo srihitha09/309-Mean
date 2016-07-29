@@ -12,8 +12,12 @@ var mongoose = require('mongoose'),
  * Create a Profile
  */
 exports.create = function(req, res) {
-	var profile = new Profile(req.body);
-	profile.save();
+	// Only create a profile if it's new user and not a guest
+	if (typeof req.user !== 'undefined'){
+		var profile = new Profile(req.body);
+		profile.save();
+	}
+
 };
 
 /**

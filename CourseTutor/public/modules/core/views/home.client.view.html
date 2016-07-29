@@ -18,30 +18,7 @@
 
 <body>
 
-
-<!-- USING GRAY NAV BAR
-<div id="nav">
-<ul>
-  <li><a href="login.html">Login</a></li>
-  <li><a href="resources.html">Resources</a></li>
-  <li><a href="profile.html">Profile</a></li>
-  <li><a href="course_requests_page.html">Courses</a></li>
-  <li><a href="signup.html">Sign Up</a></li>
-  <li><form method="get" action="/search" id="search-general">
-  <input name="q" type="search" size="40" placeholder="Search..." />
-</form></li>
-</ul>
-</div>
--->
-
-<!-- <h1 id="title">CourseTutor</h1>
-	<section id="search-section">
-		<button id="courses-btn"> Search for <strong>Tutors</strong> </button>
-		<button id="programs-btn"> Search for <strong> Students </strong></button>
-	</section> -->
-
-
-<div class="container">
+<div class="container" data-ng-controller="ProfilesController" ng-init="create()">
     <div class="header">
         <div class="clr"></div>
     </div>
