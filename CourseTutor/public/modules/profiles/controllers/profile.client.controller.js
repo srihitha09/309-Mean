@@ -93,20 +93,22 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			$location.path('profiles/' + product._id);
 		};
 
-		$scope.addCourse = function(profile){
+		$scope.addCourse = function(profile, product){
 
-			// need to add person to both friends list 
 			console.log(profile.courses);
-			console.log($scope.course);
-			profile.courses.push($scope.course);
+			console.log(product.name);
+			// Check if they already have the course, no duplicates
+			if (profile.courses.indexOf(product.name) != -1){
+				alert("This course is already in your list!");
+			}
+			else{
+				profile.courses.push(product.name);
+			}
 
 			profile.$update(function() {
-				// $location.path('profiles/' + profile._id);
+				$location.path('profiles/' + profile._id + '/courses');
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
-				//$scope.error = "Unable to add course";
-
-				//$scope.error = errorResponse.data.message;
 				$scope.error = 'Unable to add course';
 			});
 			
@@ -303,5 +305,6 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 				});
 			}
 		};
+
 	}
 ]);
