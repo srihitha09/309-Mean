@@ -95,8 +95,6 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 
 		$scope.addCourse = function(profile, product){
 
-			console.log(profile.courses);
-			console.log(product.name);
 			// Check if they already have the course, no duplicates
 			if (profile.courses.indexOf(product.name) != -1){
 				alert("This course is already in your list!");
