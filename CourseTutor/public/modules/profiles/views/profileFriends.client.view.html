@@ -83,7 +83,8 @@
     <article class="profile-content" id="content" >
       <!--Friends -->
        <article class="profile-content" id="about" data-ng-controller="ProfilesController" data-ng-init="find()">
-                  <section id="user-courses">
+                  <section id="user-friends">
+                    <h3> Friends </h3>
                   <a data-ng-repeat="profile in profiles" data-ng-href="#!/profiles/{{profile._id}}" class="dropdown-item">
                     <a data-ng-repeat="friend in profile.friends" class="dropdown-item">
                         <h4>{{friend}}</h4>
@@ -92,6 +93,18 @@
                 </section>
 
         </article>
+
+         <article data-ng-if="authentication.user.username === profile.username" id="recommend-friends" id="about" data-ng-controller="ProfilesController" data-ng-init="find()">
+
+                <section id="recommend-friends">
+                  <h3> Recommended Friends </h3>   
+                  <a data-ng-init="recommendFriends(profile)" data-ng-if="(authentication.user.username != profile.username) && (profile.friends.indexOf(authentication.user.username) == -1) && (profile.school == authentication.user.school)" data-ng-repeat="profile in profiles" class="dropdown-item">
+                    <h4>{{profile.username}}</h4>
+                  </a>
+                </section>
+
+        </article>
+
 
         <!-- When clicking 'Message' button -->
         <section id="send_message_wrapper" style="display: none;">

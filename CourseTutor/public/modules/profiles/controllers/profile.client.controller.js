@@ -102,7 +102,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 
 			// Check if they already have the course, no duplicates
 			if (profile.courses.indexOf(product.name) !== -1){
-				alert("This course is already in your list!");
+				alert('This course is already in your list!');
 			}
 			else{
 				profile.courses.push(product.name);
@@ -128,6 +128,21 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+			
+		};
+
+		$scope.recommendFriends = function(profile){
+
+			// need to add person to both friends list 
+			var recommend = [];
+			var friends = profile.friends;
+			//console.log(friends);
+			if (profile.school === $scope.authentication.user.school){
+				recommend.push(profile.username);
+			}
+
+			console.log(recommend);
+			return recommend;
 			
 		};
 
