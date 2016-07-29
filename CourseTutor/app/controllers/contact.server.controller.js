@@ -57,7 +57,7 @@ function createContactAndConversation(myId, myName, contactId, contactName, mess
 						if (err) {
 							onError(err);
 						} else {
-							onSuccess(conversation);
+							onSuccess(contact);
 						}
 					});
 				}
@@ -138,7 +138,7 @@ exports.trySaveMessage = function(req, res) {
 				});
 			},
 			function(resultConversation) {
-			  	res.status(201).json(JSON.parse(resultConversation.history));
+			  	res.status(201).end();
 			});
 		} else {
 			updateConversation(
@@ -152,7 +152,7 @@ exports.trySaveMessage = function(req, res) {
 				});
 				},
 				function(resultConversation) {
-					res.status(201).json(JSON.parse(resultConversation.history));
+					res.status(201).end();
 				});
 			
 			// next, update the has_new_message property of the contact

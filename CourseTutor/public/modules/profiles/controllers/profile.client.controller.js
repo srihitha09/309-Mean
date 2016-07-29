@@ -1,10 +1,5 @@
 'use strict';
 
-// These two variables exist for the chat system. Too long to explain...
-// Basically we need these values to send message to the correct contact
-var activeContactId;
-var activeContactName;
-
 // profiles controller
 angular.module('profiles').controller('ProfilesController', ['$scope', '$stateParams', '$location', '$window', 'Authentication', 'Profiles',
 	function($scope, $stateParams, $location, $window, Authentication, Profiles) {
@@ -12,13 +7,6 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 	  	$scope.currentPage = 1;
 	  	$scope.pageSize = 10;
 	  	$scope.offset = 0;
-
-	  	// A helper function to show only one element inside 
-		// <article class="profile-content" id="content">
-		function showElementAndHideOthers(element_id) {
-			$('article#content > :not('+element_id+')').hide();
-			$(element_id).show();
-		}
 
 	   // Page changed handler
 	   $scope.pageChanged = function() {
@@ -93,22 +81,18 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			$location.path('profiles/' + product._id);
 		};
 
-		$scope.addCourse = function(profile, product){
+		$scope.addCourse = function(profile){
 
-			console.log(profile.courses);
-			console.log(product.name);
-			// Check if they already have the course, no duplicates
-			if (profile.courses.indexOf(product.name) != -1){
-				alert("This course is already in your list!");
-			}
-			else{
-				profile.courses.push(product.name);
-			}
+			// need to add person to both friends list 
+			profile.courses.push($scope.course);
 
 			profile.$update(function() {
-				$location.path('profiles/' + profile._id + '/courses');
+				$location.path('profiles/' + profile._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
+				//$scope.error = "Unable to add course";
+
+				//$scope.error = errorResponse.data.message;
 				$scope.error = 'Unable to add course';
 			});
 			
@@ -129,7 +113,8 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		};
 
 		$scope.showAbout = function() {
-			showElementAndHideOthers('section#about');
+			$('article#content > :not(#about)').hide();
+			$('section#about').show();
 		};
 
 		$scope.sendMessage = function() {
@@ -164,7 +149,8 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			$('textarea.post_message_textarea').val('');
 			$('p#alert_post_sending').hide();
 			// hide and show
-			showElementAndHideOthers('section#send_message_wrapper');
+			$('section#about').hide();
+			$('section#send_message_wrapper').show();
 		};
 
 		$scope.hideMessageBox = function() {
@@ -172,7 +158,8 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			$('textarea.post_message_textarea').val('');
 			$('p#alert_post_sending').hide();
 			// hide and show
-			showElementAndHideOthers('section#about');
+			$('section#about').show();
+			$('section#send_message_wrapper').hide();
 		};
 
 		$scope.showContacts = function() {
@@ -182,7 +169,6 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 				method: 'GET',
 				success: function(contactList) {
 					var $wrapper = $('section#contacts_wrapper');
-					$wrapper.empty();
 					var i=0; 
 					while(i<contactList.length) {
 						var newMessageAlert = '';
@@ -206,11 +192,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 							style: 'margin: 0; color: red;'
 						}));
 						$item.append($item_info_wrap);
-						$item.on('click', {
-							conv_id : contactList[i].conversation_id,
-							user_id : contactList[i].contact_id, 
-							user_name : contactList[i].contact_name
-						} , showChatWithContact);
+						$item.on('click', {id : contactList[i].conversation_id} ,showChatWithContact);
 						$wrapper.append($item);
 
 						i++;
@@ -218,93 +200,70 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 				}
 			});
 
-			showElementAndHideOthers('section#contacts_wrapper');
+			$('section#about').hide();
+			$('section#contacts_wrapper').show();
 		};
 
-		function refreshChatView(history) {
-			// history is a list of objects representing each message
-			// Each object has three properties.
-			// from: name of the person sent this message
-			// to: name of the person receives this message
-			// body: message content
-			// timestamp: timestamp of this message
-			$('section.chat_message').remove();
-			var $wrapper = $('section#chat_wrapper');
-			var i=0;
-			while (i<history.length) {
-				var styleString = '';
-				var imgFileName = '';
-				if (history[i].from === $scope.authentication.user.displayName) {
-					styleString = 'text-align: right; flex-direction: row-reverse;';
-					imgFileName = 'talk_green.png';
-				} else {
-					styleString = 'text-align: left; flex-direction: row;';
-					imgFileName = 'talk_blue.png';
-				}
-
-				var $item = $('<section/>', {
-					class: 'chat_message',
-					style: 'display: flex; margin-left: 10px; background-color: #f6f9fb; '+styleString
-				});
-				$item.append($('<img/>', {
-					src: '/modules/profiles/img/'+imgFileName,
-					style: 'width: 40px; height: 40px; margin: 10px;'
-				}));
-
-				var $item_content_wrap = $('<section/>');
-				$item_content_wrap.append($('<p/>', {
-					text: history[i].from,
-					style: 'font-size: 20px; margin: 15px 0 0 0;'
-				}));
-				$item_content_wrap.append($('<p/>', {
-					text: history[i].timestamp,
-					style: 'font-size: 10px; margin: 0;'
-				}));
-				$item_content_wrap.append($('<p/>', {
-					text: history[i].body,
-					style: 'margin: 0;'
-				}));
-
-				$item.append($item_content_wrap);
-				$wrapper.append($item);
-
-				i++;
-			}
-		}
-
 		function showChatWithContact(event) {
-			var fetchConversationUrl = '/contact/getChatHistory?conv_id='+event.data.conv_id;
-			activeContactId = event.data.user_id;
-			activeContactName = event.data.user_name;
-			console.log($scope);
+			var fetchConversationUrl = '/contact/getChatHistory?conv_id='+event.data.id;
 			$.ajax({
 				url: fetchConversationUrl,
 				method: 'GET',
 				success: function(history) {
-					refreshChatView(history);
-					showElementAndHideOthers('section#chat_wrapper');
+					// history is a list of objects representing each message
+					// Each object has three properties.
+					// from: name of the person sent this message
+					// to: name of the person receives this message
+					// body: message content
+					// timestamp: timestamp of this message
+					var i=0;
+					while (i<history.length) {
+						var $wrapper = $('section#chat_wrapper');
+
+						var styleString = '';
+						var imgFileName = '';
+						if (history[i].from === $scope.authentication.user.displayName) {
+							styleString = 'text-align: right; flex-direction: row-reverse;';
+							imgFileName = 'talk_green.png';
+						} else {
+							styleString = 'text-align: left; flex-direction: row;';
+							imgFileName = 'talk_blue.png';
+						}
+
+						var $item = $('<section/>', {
+							style: 'display: flex; margin-left: 10px; background-color: #f6f9fb; '+styleString
+						});
+						$item.append($('<img/>', {
+							src: '/modules/profiles/img/'+imgFileName,
+							style: 'width: 40px; height: 40px; margin: 10px;'
+						}));
+
+						var $item_content_wrap = $('<section/>');
+						$item_content_wrap.append($('<p/>', {
+							text: history[i].from,
+							style: 'font-size: 20px; margin: 15px 0 0 0;'
+						}));
+						$item_content_wrap.append($('<p/>', {
+							text: history[i].timestamp,
+							style: 'font-size: 10px; margin: 0;'
+						}));
+						$item_content_wrap.append($('<p/>', {
+							text: history[i].body,
+							style: 'margin: 0;'
+						}));
+
+						$item.append($item_content_wrap);
+						$wrapper.append($item);
+
+						i++;
+					}
+
+					$('section#contacts_wrapper').hide();
+					$('section#chat_wrapper').show();
+					console.log(history);
 				}
 			});
 		}
-
-		$scope.sendMessageInChat = function() {
-			if (typeof $scope.input_message !== 'undefined' && $scope.input_message.length > 0) {
-				var messageUrl = '/contact/sendMessage?my_id='+$scope.authentication.user._id
-						+'&my_name='+$scope.authentication.user.displayName
-						+'&contact_id='+activeContactId
-						+'&contact_name='+activeContactName
-						+'&text='+$scope.input_message;
-				console.log(messageUrl);
-				$.ajax({
-					url: messageUrl,
-					method: 'POST',
-					success: function(history) {
-						$('textarea.post_message_textarea').val('');
-						refreshChatView(history);
-					}
-				});
-			}
-		};
 
 	}
 ]);

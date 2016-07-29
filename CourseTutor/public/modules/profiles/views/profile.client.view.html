@@ -1,4 +1,4 @@
-<article class="container" data-ng-controller="ProfilesController" data-ng-init="findOne()"> 
+<article class="container" data-ng-controller="ProfilesController" data-ng-init="findOne()" style="width: 100%; margin-top: 50px;"> 
     <section id="settings_profile_container" class="row profile">
     <section class="col-md-3">
       <section class="profile-sidebar">
@@ -34,7 +34,7 @@
         <nav id="profile-usermenu" data-ng-controller="ProfilesController" data-ng-init="find()" >
           <ul class="nav">
             <li class="active" ng-click="showAbout()">
-              <a data-ng-href="#!/profiles/{{profile._id}}"> About </a>
+              <a href="javascript:void(0)"> About </a>
             </li>
             <li>
                 <a data-ng-href="#!/profiles/{{profile._id}}/courses" class="dropdown-item">
@@ -63,7 +63,7 @@
         </section>
         <!-- When clicking 'Message' button -->
         <section id="send_message_wrapper" style="display: none;">
-          <textarea class="post_message_textarea" rows="6" form="message_form" placeholder="Let's start chatting!" ng-model="input_message"></textarea>
+          <textarea class="post_message_textarea" rows="6" form="message_form" placeholder="Let's start talking!" ng-model="input_message"></textarea>
           <form id="message_form" style="width: 90%; text-align: end;" data-ng-submit="sendMessage()">
             <p id="alert_post_sending" style="display: none;"></p>
             <a href="javascript:void 0;" ng-click="hideMessageBox()">Cancel</a>
@@ -72,12 +72,7 @@
         </section>
         <!-- Display contacts -->
         <section id="contacts_wrapper" style="display: none;"></section>
-        <section id="chat_wrapper" style="display: none;">
-          <textarea class="post_message_textarea" rows="6" form="in_chat_message_form" placeholder="Let's start chatting!" ng-model="input_message"></textarea>
-          <form id="in_chat_message_form" style="width: 90%; text-align: end;" data-ng-submit="sendMessageInChat()">
-            <input type="submit" value="Send">
-          </form>
-        </section>
+        <section id="chat_wrapper" style="display: none;"></section>
     </article>
   </section>
 </article>
