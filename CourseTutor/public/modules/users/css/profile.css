@@ -8,7 +8,8 @@ Licensed under MIT
 /* Profile container */
 #settings_profile_container {
   display: inline-flex;
-
+  width: 100%;
+  margin-top: 70px;
 }
 
 /* Profile sidebar */
