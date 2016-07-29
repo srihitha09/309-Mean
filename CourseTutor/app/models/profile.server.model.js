@@ -76,7 +76,19 @@ var ProfileSchema = new Schema({
 	userId: {
 		type: String,
 		unique: true
-	}
+	},
+	upvotes: {
+		type: Number, 
+		default: 0
+	},
+  	upvoters: {
+  		type: Array, 
+  		default: []
+  	},
+  	downvoters: {
+  		type: Array,
+  		default: []
+  	}
 });
 
 mongoose.model('Profile', ProfileSchema);

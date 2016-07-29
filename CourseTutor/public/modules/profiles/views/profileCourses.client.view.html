@@ -15,9 +15,32 @@
           <p class="profile-usertitle-name" data-ng-bind="profile.username"> </p>
           <p class="profile-usertitle-job" data-ng-bind="profile.school"> </p>
           <p class="profile-usertitle-program" data-ng-bind="profile.program"> </p>
+
           <p class="rating">
-            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            <!--<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>-->
+            <p>Profile likes: {{profile.upvotes}}</p>
+              <a class="btn btn-primary" data-ng-click="downvote(profile);" data-ng-if="(profile.username != authentication.user.username && profile.downvoters.indexOf(authentication.user.username) == -1) || authentication.user.roles.indexOf('admin') != -1">
+                <i class="glyphicon glyphicon-thumbs-down"></i>
+              </a>
+              <a class="btn btn-primary" data-ng-click="upvote(profile);" data-ng-if="(profile.username != authentication.user.username && profile.upvoters.indexOf(authentication.user.username) == -1) || authentication.user.roles.indexOf('admin') != -1">
+                <i class="glyphicon glyphicon-thumbs-up"></i>
+              </a>
           </p>
+
+          <!--Tutor badge-->
+          <i class="glyphicon glyphicon-education" data-ng-if="profile.roles.indexOf('tutor') != -1"> Tutor</i>
+          <br>
+
+          <!--Admin badge-->
+          <i class="glyphicon glyphicon-tower" data-ng-if="profile.roles.indexOf('admin') != -1"> Admin</i>
+          <br>
+
+          <!--Seniority badge-->
+          <i class="glyphicon glyphicon-pawn" data-ng-if="profile.courses.length <= 5"> Freshman</i>
+          <i class="glyphicon glyphicon-bishop" data-ng-if="profile.courses.length >= 6 && profile.courses.length <= 10"> Junior</i>
+          <i class="glyphicon glyphicon-knight" data-ng-if="profile.courses.length >= 11 && profile.courses.length <= 15"> Sophomore</i>
+          <i class="glyphicon glyphicon-king" data-ng-if="profile.courses.length >= 16"> Senior</i>
+
           <span class="badge-title" data-ng-bind="profile.role"> </span>
         </section>
         <!-- END SIDEBAR USER TITLE -->

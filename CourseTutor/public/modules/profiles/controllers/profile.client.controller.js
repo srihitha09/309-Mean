@@ -270,7 +270,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 
 				i++;
 			}
-		}
+		};
 
 		function showChatWithContact(event) {
 			var fetchConversationUrl = '/contact/getChatHistory?conv_id='+event.data.conv_id;
@@ -285,7 +285,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 					showElementAndHideOthers('section#chat_wrapper');
 				}
 			});
-		}
+		};
 
 		$scope.sendMessageInChat = function() {
 			if (typeof $scope.input_message !== 'undefined' && $scope.input_message.length > 0) {
@@ -306,5 +306,34 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			}
 		};
 
+		$scope.upvote = function(profile){
+			// Check if guy already downvoted, need to reupdate the voters list
+			var index = profile.downvoters.indexOf($scope.authentication.user.username);
+			if (index !== -1){
+				profile.downvoters.splice(index, 1);
+			}
+			profile.upvotes++;
+			profile.upvoters.push($scope.authentication.user.username);
+			profile.$update(function() {
+				//$location.path('profile/' + profile._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		$scope.downvote = function(profile){
+			// Check if guy already upvoted, need to reupdate the voters list
+			var index = profile.upvoters.indexOf($scope.authentication.user.username);
+			if (index !== -1){
+				profile.upvoters.splice(index, 1);
+			}
+			profile.upvotes--;
+			profile.downvoters.push($scope.authentication.user.username);
+			profile.$update(function() {
+				//$location.path('profile/' + profile._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 	}
 ]);
