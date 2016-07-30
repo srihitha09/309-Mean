@@ -406,7 +406,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 								style: 'margin: 0 1px; font-size: 12px;'
 							}));
 							$notificationItem.append($textContent);
-							$('section#about').prepend($notificationItem);
+							$('section#notifications').prepend($notificationItem);
 						}
 						i++;
 					}

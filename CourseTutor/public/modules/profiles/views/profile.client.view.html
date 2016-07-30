@@ -83,7 +83,8 @@
       </section>
     </section>
     <article class="profile-content" id="content">
-        <section id="about" data-ng-init="pushNotification()">
+        <section id="notifications" data-ng-init="pushNotification()" data-ng-show="authentication.user._id === profile.userId"></section>
+        <section id="about">
           <p data-ng-bind="profile.aboutMe"></p>
         </section>
         <!-- When clicking 'Message' button -->
