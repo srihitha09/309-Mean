@@ -1,4 +1,6 @@
 <section class="row" data-ng-controller="ProfilesController" data-ng-init="findOne()">
+	<br>
+	<br>
 	<h3 class="col-md-12 text-center">Edit your profile</h3>
 	<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
 		<form name="userForm" data-ng-submit="update(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
@@ -22,6 +24,12 @@
 				<div class="form-group">
 					<label for="school">Program</label>
 					<input type="text" id="program" name="program" class="form-control" data-ng-model="profile.program" placeholder="Program">
+				</div>
+				<div class="form-group">
+
+					<select data-ng-model="profile.roles" ng-options="role for role in roles">
+					</select>
+
 				</div>
 				<div class="form-group">
 					<label for="aboutMe">About Me</label>

@@ -7,9 +7,11 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		// If user is signed in then redirect back home
 		if ($scope.authentication.user) $location.path('/');
 
+		$scope.roles = ['tutor', 'student'];
+
 		$scope.signup = function() {
 			//if ($scope.credentials.roles)
-		//	console.log($scope.credentials);
+			
 			$http.post('/auth/signup', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 
@@ -18,6 +20,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				// And redirect to the index page
 				$location.path('/');
 				$window.location.reload();
+				$window.location.reload();
+				console.log($scope.credentials.roles);
 			}).error(function(response) {
 				$scope.error = response.message;
 			});

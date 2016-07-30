@@ -12,7 +12,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 	  	$scope.currentPage = 1;
 	  	$scope.pageSize = 10;
 	  	$scope.offset = 0;
-
+	  	$scope.roles = ['tutor', 'student'];
 	  	// A helper function to show only one element inside 
 		// <article class="profile-content" id="content">
 		function showElementAndHideOthers(element_id) {
@@ -38,12 +38,15 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 				email: $scope.authentication.user.email,
 				school: $scope.authentication.user.school,
 				program: $scope.authentication.user.program,
-				userId: $scope.authentication.user._id
+				userId: $scope.authentication.user._id,
+				roles: $scope.authentication.user.roles
 			});
+			console.log($scope.authentication.user.roles);
 
 			// Redirect after save by reload
 			profile.$save(function(response) {
 				$window.location.reload();
+				console.log($scope.authentication.user.roles);
 				// Clear form fields
 				$scope.author = '';
 			}, function(errorResponse) {

@@ -1,4 +1,6 @@
 <section class="row" data-ng-controller="AuthenticationController">
+	<br>
+	<br>
 	<h3 class="col-md-12 text-center">Sign up using your social accounts</h3>
 	<div class="col-md-12 text-center">
 		<!--<a href="/auth/facebook" class="undecorated-link">
@@ -50,19 +52,12 @@
 					<label for="program">Program</label>
 					<input type="text" id="program" name="program" class="form-control" data-ng-model="credentials.program" placeholder="Program">
 				</div>
-				<!--<div class="form-group">
-					<label for="program">Role</label>
-					<input type="text" id="program" name="program" class="form-control" data-ng-model="credentials.roles" placeholder="Tutor or Student">
-				</div>
 				<div class="form-group">
-					<label>Tutor: <input type="checkbox" ng-model="checkboxModel.tutor" data-ng-model="credentials.roles">
-  					</label><br/>
-  					<label>Student: <input type="checkbox" ng-model="checkboxModel.student" data-ng-model="credentials.roles">
-   					</label><br/>
-				</div>!-->
+					<label for="program">Role  </label>
+					<select data-ng-model="credentials.roles" ng-options="role for role in roles">
+					</select>
 
-				<!--<tt>value1 = {{checkboxModel.value1}}</tt><br/>
-  <tt>value2 = {{checkboxModel.value2}}</tt><br/>!-->
+				</div>
 				
 				<div class="text-center form-group">
 					<button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;

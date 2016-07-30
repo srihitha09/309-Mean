@@ -19,7 +19,7 @@ function sanitizeHelper(v){
  */
 exports.signup = function(req, res) {
 	// For security measurement we remove the roles from the req.body object
-	delete req.body.roles;
+	//delete req.body.roles;
 
 	req.body.firstName = sanitizeHelper(req.body.firstName);
 	req.body.lastName = sanitizeHelper(req.body.lastName);
@@ -28,6 +28,7 @@ exports.signup = function(req, res) {
 	//req.body.password = sanitizeHelper(req.body.password);
 	req.body.school = sanitizeHelper(req.body.school);
 	req.body.program = sanitizeHelper(req.body.program);
+	console.log(req.body.roles);
 	
 	// Init Variables
 	var user = new User(req.body);
@@ -36,6 +37,7 @@ exports.signup = function(req, res) {
 	// Add missing user fields
 	user.provider = 'local';
 	user.displayName = user.firstName + ' ' + user.lastName;
+	//user.roles.push(req.body.roles);
 
 	// Then save the user 
 	user.save(function(err) {

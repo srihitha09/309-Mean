@@ -37,9 +37,9 @@ var ProfileSchema = new Schema({
 	roles: {
 		type: [{
 			type: String,
-			enum: ['user', 'admin', 'tutor', 'student']
+			enum: ['admin', 'tutor', 'student']
 		}],
-		default: ['user']
+		default: ['student']
 	},
 	updated: {
 		type: Date
