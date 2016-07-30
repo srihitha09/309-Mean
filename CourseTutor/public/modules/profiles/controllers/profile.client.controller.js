@@ -145,6 +145,18 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
+
+			// send the other person a message
+			var messageUrl = '/contact/sendMessage?my_id='+$scope.authentication.user._id
+				+'&my_name='+$scope.authentication.user.displayName
+				+'&contact_id='+$scope.profile.userId
+				+'&contact_name='+$scope.profile.displayName
+				+'&text=I added you as a friend!';
+			console.log(messageUrl);
+			$.ajax({
+				url: messageUrl,
+				method: 'POST'
+			});
 			
 		};
 
