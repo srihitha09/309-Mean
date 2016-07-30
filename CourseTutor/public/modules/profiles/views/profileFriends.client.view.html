@@ -101,7 +101,7 @@
 
                 <section id="recommend-friends">
                   <h3> Recommended Friends </h3>   
-                  <a data-ng-init="recommendFriends(profile)" data-ng-if="(authentication.user.username != profile.username) && (profile.friends.indexOf(authentication.user.username) == -1) && ((profile.school == authentication.user.school) || (profile.roles == authentication.user.roles))" data-ng-repeat="profile in profiles" class="dropdown-item">
+                  <a data-ng-init="recommendFriends(profile)" data-ng-if="(authentication.user.username != profile.username) && (profile.friends.indexOf(authentication.user.username) == -1) && ((profile.school == authentication.user.school) && (profile.roles == authentication.user.roles))" data-ng-repeat="profile in profiles" class="dropdown-item">
                     <h4>{{profile.username}}</h4>
                   </a>
                 </section>

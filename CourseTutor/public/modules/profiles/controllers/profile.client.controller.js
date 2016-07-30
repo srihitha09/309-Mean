@@ -77,12 +77,13 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		$scope.update = function() {
 			var profile = $scope.profile;
 
-			profile.firstName = sanitizeHelper($scope.profile.firstName);
+			/*profile.firstName = sanitizeHelper($scope.profile.firstName);
 			profile.lastName = sanitizeHelper($scope.profile.lastName);
+			profile.displayName = sanitizeHelper($scope.profile.displayName);
 			profile.school = sanitizeHelper($scope.profile.school);
 			profile.program = sanitizeHelper($scope.profile.program);
 			profile.email = sanitizeHelper($scope.profile.email);
-			profile.about = sanitizeHelper($scope.profile.about);
+			profile.about = sanitizeHelper($scope.profile.about);*/
 
 
 			profile.$update(function() {
