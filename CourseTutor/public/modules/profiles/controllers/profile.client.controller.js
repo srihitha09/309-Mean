@@ -77,12 +77,25 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		$scope.update = function() {
 			var profile = $scope.profile;
 
+			profile.firstName = sanitizeHelper($scope.profile.firstName);
+			profile.lastName = sanitizeHelper($scope.profile.lastName);
+			profile.school = sanitizeHelper($scope.profile.school);
+			profile.program = sanitizeHelper($scope.profile.program);
+			profile.email = sanitizeHelper($scope.profile.email);
+			profile.about = sanitizeHelper($scope.profile.about);
+
+
 			profile.$update(function() {
 				$location.path('profiles/' + profile._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
 		};
+
+		function sanitizeHelper(v){
+		   var clean = v.replace(/^\$/,'');
+		  return clean;
+		}		
 
 		// Find a list of profiles
 		$scope.find = function() {
