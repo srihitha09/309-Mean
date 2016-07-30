@@ -163,6 +163,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 		};
 
 		$scope.showAbout = function() {
+			$scope.pushNotification();
 			showElementAndHideOthers('section#about');
 		};
 
@@ -374,5 +375,42 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 				$scope.error = errorResponse.data.message;
 			});
 		};
+
+		$scope.pushNotification = function() {
+			var listUrl = '/contact/listContacts?my_id='+$scope.authentication.user._id;
+			$.ajax({
+				url: listUrl,
+				method: 'GET',
+				success: function(contactList) {
+					$('section.notification').remove();
+					var i=0; 
+					while(i<contactList.length) {
+						if (contactList[i].has_new_message) {
+							var $notificationItem = $('<section/>', {
+								class: 'notification',
+								style: 'display: flex; margin-left: 10px; background-color: #f6f9fb; text-align: left;'
+							});
+							$notificationItem.append($('<img/>', {
+								src: '/modules/profiles/img/notification.png',
+								style: 'width: 30px; height: 30px; margin: 10px;'
+							}));
+
+							var $textContent = $('<section/>', {});
+							$textContent.append($('<p/>', {
+								text: 'New message',
+								style: 'margin: 5px 0 0; color: red; font-size: 18px;'
+							}));
+							$textContent.append($('<p/>', {
+								text: 'from '+contactList[i].contact_name,
+								style: 'margin: 0 1px; font-size: 12px;'
+							}));
+							$notificationItem.append($textContent);
+							$('section#about').prepend($notificationItem);
+						}
+						i++;
+					}
+				}
+			});
+		}
 	}
 ]);
