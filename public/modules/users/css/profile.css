@@ -186,3 +186,9 @@ button:hover {
   display: inline;
   /* Green: #326C32, Red: #E32F35*/
 }
+
+h3{
+  font-size: 25px;
+  margin-top: 20px;
+}
+
