@@ -207,7 +207,7 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 					var i=0; 
 					while(i<contactList.length) {
 						var newMessageAlert = '';
-						if (!contactList[i].has_new_message) {
+						if (contactList[i].has_new_message) {
 							newMessageAlert = 'New message!';
 						}
 						var $item = $('<section/>', {
@@ -291,13 +291,12 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 
 				i++;
 			}
-		};
+		}
 
 		function showChatWithContact(event) {
 			var fetchConversationUrl = '/contact/getChatHistory?conv_id='+event.data.conv_id;
 			activeContactId = event.data.user_id;
 			activeContactName = event.data.user_name;
-			console.log($scope);
 			$.ajax({
 				url: fetchConversationUrl,
 				method: 'GET',
@@ -306,7 +305,13 @@ angular.module('profiles').controller('ProfilesController', ['$scope', '$statePa
 					showElementAndHideOthers('section#chat_wrapper');
 				}
 			});
-		};
+
+			var updateNotificationUrl = '/contact/setNotification?my_id='+$scope.authentication.user._id+'&contact_id='+event.data.user_id;
+			$.ajax({
+				url: updateNotificationUrl,
+				method: 'POST'
+			});
+		}
 
 		$scope.sendMessageInChat = function() {
 			if (typeof $scope.input_message !== 'undefined' && $scope.input_message.length > 0) {

@@ -12,4 +12,7 @@ module.exports = function(app) {
 
 	app.route('/contact/listContacts?')
 		.get(contacts.list);
+
+	app.route('/contact/setNotification')
+		.post(contacts.setNotification);
 };

@@ -163,14 +163,14 @@ exports.trySaveMessage = function(req, res) {
 					});
 				} 
 
-			contact.has_new_message = true;
-			contact.save(function(err) {
-				if (err) {
-					return res.status(400).send({
-						message: errorHandler.getErrorMessage(err)
-					});
-				}
-			});
+				contact.has_new_message = true;
+				contact.save(function(err) {
+					if (err) {
+						return res.status(400).send({
+							message: errorHandler.getErrorMessage(err)
+						});
+					}
+				});
 			});
 		}
  	});
@@ -214,6 +214,26 @@ exports.fetchConversation = function(req, res) {
 		}
 
 		res.json(JSON.parse(conversation.history));
+	});
+};
+
+exports.setNotification = function(req, res) {
+	Contact.findOne({ my_id:req.query.my_id, contact_id:req.query.contact_id }).exec(function(err, contact) {
+		if (err || contact === null) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		}
+
+		contact.has_new_message = false;
+		contact.save(function(err) {
+			if (err) {
+				console.log(err);
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			}
+		});
 	});
 };
 
