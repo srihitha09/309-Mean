@@ -64,16 +64,14 @@
                     <h4>Courses</h4>
                 </a>
             </li>
-            <li>
-              <a href="#resources"> Sessions </a>
-            </li>
+
             <li>
                 <a data-ng-href="#!/profiles/{{profile._id}}/friends" class="dropdown-item">
                     <h4>Friends</h4>
                 </a>
             </li>
             <li data-ng-if="authentication.user._id === profile.userId" ng-click="showContacts()">
-              <a href="javascript:void(0)">Contacts</a>
+              <a href="javascript:void(0)">Messages</a>
             </li>
           </ul>
         </nav>
