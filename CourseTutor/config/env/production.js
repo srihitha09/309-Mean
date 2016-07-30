@@ -34,9 +34,9 @@ module.exports = {
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {
-		clientID: process.env.GOOGLE_ID || 'APP_ID',
-		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
-		callbackURL: '/auth/google/callback'
+		clientID: process.env.GOOGLE_ID || '907379972916-64htbk8koaaiprl25ksurhptutsu1fiv.apps.googleusercontent.com',
+		clientSecret: process.env.GOOGLE_SECRET || 'YTj6OquPtDuEkpZWwykLHpKW',
+		callbackURL: 'https://coursetutor.herokuapp.com/auth/google/callback'
 	},
 	linkedin: {
 		clientID: process.env.LINKEDIN_ID || 'APP_ID',
