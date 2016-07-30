@@ -3,7 +3,7 @@
     <section class="col-md-3">
       <section class="profile-sidebar">
         <div class="form-group" data-ng-controller="ProfilesController" data-ng-init="find()">
-          <input type="text" ng-model="search" typeahead="profile as profile.username for profile in profiles | filter:$viewValue | limitTo:4" class="form-control" typeahead-on-select="profileSearch($item)" placeholder="Search profiles..." width="200" >
+          <input type="text" ng-model="search" typeahead="profile as profile.username for profile in profiles | filter:$viewValue | limitTo:4" class="form-control" typeahead-on-select="profileSearch($item)" placeholder="Search profiles..." width="200" style="width: auto;">
         </div>
         <!-- SIDEBAR USERPIC -->
         <section class="profile-userpic">

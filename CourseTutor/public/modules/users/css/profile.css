@@ -131,6 +131,11 @@ Licensed under MIT
   min-height: 460px;
 }
 
+#about {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
 /*
   Ratings Stars
 */
